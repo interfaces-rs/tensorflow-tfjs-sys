@@ -1,0 +1,53 @@
+[package]
+name = "tfjs-sys"
+version = "0.0.1"
+authors = ["Darin Morrison <freebroccolo@users.noreply.github.com>"]
+license = "(Apache-2.0 OR MIT)"
+readme = "README.md"
+categories = ["wasm"]
+repository = "https://github.com/interfaces-rs/tfjs-sys"
+description = """
+Raw bindings to the tfjs API for projects using wasm-bindgen.
+"""
+edition = "2018"
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+env_logger = "^0.7.0"
+failure = "^0.1.5"
+serde = "^1.0.101"
+serde_derive = "^1.0.101"
+sourcefile = "^0.1.4"
+wasm-bindgen-webidl = "^0.2.51"
+
+[dependencies.js-sys]
+version = "^0.3.28"
+features = []
+
+[dependencies.web-sys]
+version = "^0.3.28"
+features = []
+
+[dependencies.wasm-bindgen]
+version = "^0.2.51"
+features = ["serde-serialize", "nightly"]
+
+[workspace]
+members = [
+  "crates/tfjs-converter-sys",
+  "crates/tfjs-core-sys",
+  "crates/tfjs-layers-sys",
+  "crates/tfjs-node-sys",
+]
+
+[patch.crates-io]
+tfjs-converter-sys = { path = 'crates/tfjs-converter-sys' }
+tfjs-core-sys = { path = 'crates/tfjs-core-sys' }
+tfjs-layers-sys = { path = 'crates/tfjs-layers-sys' }
+tfjs-node-sys = { path = 'crates/tfjs-node-sys' }
+tfjs-sys = { path = '.' }

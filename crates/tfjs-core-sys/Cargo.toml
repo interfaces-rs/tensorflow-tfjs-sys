@@ -1,0 +1,68 @@
+[package]
+publish = false
+edition = "2018"
+name = "tfjs-core-sys"
+version = "0.0.1"
+authors = ["Darin Morrison <freebroccolo@users.noreply.github.com>"]
+license = "(Apache-2.0 OR MIT)"
+readme = "README.md"
+categories = ["wasm"]
+repository = "https://github.com/interfaces-rs/tfjs-sys"
+description = """
+Raw bindings to the tfjs-core API for projects using wasm-bindgen.
+"""
+
+[package.metadata.docs.rs]
+all-features = true
+
+[lib]
+crate-type = ["rlib"]
+
+[build-dependencies]
+env_logger = "0.6.1"
+failure = "0.1.5"
+sourcefile = "0.1.4"
+wasm-bindgen-webidl = "0.2.45"
+
+[dependencies]
+serde = "1.0.91"
+serde_derive = "1.0.91"
+
+[dependencies.js-sys]
+version = "0.3.22"
+features = []
+
+[dependencies.web-sys]
+version = "0.3.22"
+features = []
+
+[dependencies.wasm-bindgen]
+version = "0.2.45"
+features = ["serde-serialize", "nightly"]
+
+[features]
+ArrayMap = []
+DataType = []
+DataTypeMap = []
+DataValues = []
+FlatVector = []
+NumericDataType = []
+Rank = []
+RecursiveArray = []
+RegularArray = []
+ScalarLike = []
+ShapeMap = []
+SingleValueMap = []
+Tensor = []
+TensorLike = []
+TensorLike1D = []
+TensorLike2D = []
+TensorLike3D = []
+TensorLike4D = []
+TensorLike5D = []
+TensorLike6D = []
+TypedArray = []
+UpcastBoolAndMap = []
+UpcastComplex64AndMap = []
+UpcastFloat32AndMap = []
+UpcastInt32AndMap = []
