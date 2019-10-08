@@ -23,6 +23,7 @@ failure = "^0.1.5"
 serde = "^1.0.101"
 serde_derive = "^1.0.101"
 sourcefile = "^0.1.4"
+wasm-bindgen-futures = "^0.4.1"
 wasm-bindgen-webidl = "^0.2.51"
 
 [dependencies.js-sys]
