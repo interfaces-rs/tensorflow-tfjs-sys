@@ -8,4 +8,6 @@ extern {
     #[wasm_bindgen(extends = Promise)]
     pub type Tensor;
 
+    /// Creates a Tensor with the provided values, shape and dtype.
+    pub fn tensor(values: &Array, shape: Option<&Array>, dtype: Option<&str>) -> Tensor;
 }
