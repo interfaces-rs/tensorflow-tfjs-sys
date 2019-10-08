@@ -16,18 +16,18 @@ Raw bindings to the tfjs-node API for projects using wasm-bindgen.
 crate-type = ["rlib"]
 
 [dependencies]
-serde = "1.0.91"
-serde_derive = "1.0.91"
-wasm-bindgen-webidl = "0.2.45"
+serde = "^1.0.101"
+serde_derive = "^1.0.101"
+wasm-bindgen-webidl = "^0.2.51"
 
 [dependencies.js-sys]
-version = "0.3.22"
+version = "^0.3.28"
 features = []
 
 [dependencies.web-sys]
-version = "0.3.22"
+version = "^0.3.28"
 features = []
 
 [dependencies.wasm-bindgen]
-version = "0.2.45"
+version = "^0.2.51"
 features = ["serde-serialize", "nightly"]
