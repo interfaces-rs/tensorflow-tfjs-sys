@@ -28,3 +28,36 @@ mod tensor {
         tensor.print(false);
     }
 }
+
+mod variable {
+    use tfjs_sys as tf;
+    use wasm_bindgen_test::*;
+
+    #[wasm_bindgen_test]
+    fn assign() {
+        let old = {
+            let values = {
+                let res = js_sys::Array::new();
+                res.push(&0u32.into());
+                res.push(&1u32.into());
+                res
+            };
+            let shape = Default::default();
+            let dtype = Default::default();
+            tf::tensor(&values, shape, dtype)
+        };
+        let new = {
+            let values = {
+                let res = js_sys::Array::new();
+                res.push(&2u32.into());
+                res.push(&3u32.into());
+                res
+            };
+            let shape = Default::default();
+            let dtype = Default::default();
+            tf::tensor(&values, shape, dtype)
+        };
+        let variable = tf::Variable::new(&old);
+        variable.assign(&new);
+    }
+}
