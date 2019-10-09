@@ -3,9 +3,9 @@ use wasm_bindgen_test::*;
 
 #[wasm_bindgen_test]
 async fn scalar_callable() {
-    let value = 0u32.into();
+    let value: u32 = Default::default();
     let dtype = Default::default();
-    tf::scalar(&value, dtype);
+    tf::scalar(&value.into(), dtype);
 }
 
 #[wasm_bindgen_test]
