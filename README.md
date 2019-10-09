@@ -18,4 +18,4 @@
 
 ## Status
 
-Progress is blocked until the parser [here](https://github.com/interfaces-rs/interfaces) can process WebIDL module declarations.
+Experimental.
