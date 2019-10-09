@@ -8,6 +8,9 @@ extern {
     #[wasm_bindgen(extends = Promise)]
     pub type Tensor;
 
+    /// Creates rank-0 Tensor (scalar) with the provided value and dtype.
+    pub fn scalar(value: &JsValue, dtype: Option<&str>) -> Tensor;
+
     /// Creates a Tensor with the provided values, shape and dtype.
     pub fn tensor(values: &Array, shape: Option<&Array>, dtype: Option<&str>) -> Tensor;
 }
