@@ -5,9 +5,6 @@ use wasm_bindgen::prelude::*;
 extern {
     /// A GraphModel is a directed, acyclic graph of built from SavedModel GraphDef and allows
     /// inference exeuction.
-    ///
-    /// A GraphModel can only be created by loading from a model converted from a TensorFlow
-    /// SavedModel using the command line converter tool and loaded via loadGraphModel().
     pub type GraphModel;
 
     /// Execute the inference for the input tensors.
