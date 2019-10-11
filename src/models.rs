@@ -80,5 +80,6 @@ extern {
 
     /// Runs a single gradient update on a single batch of data.
     #[wasm_bindgen(method, js_name = "trainOnBatch")]
+    #[must_use]
     pub fn train_on_batch(this: &LayersModel, x: &JsValue, y: &JsValue) -> Promise;
 }
