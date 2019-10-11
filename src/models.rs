@@ -8,15 +8,19 @@ extern {
     pub type GraphModel;
 
     /// Execute the inference for the input tensors.
-    pub fn predict(inputs: &JsValue, config: Option<&Object>) -> JsValue;
+    #[wasm_bindgen(method)]
+    pub fn predict(this: &GraphModel, inputs: &JsValue, config: Option<&Object>) -> JsValue;
 
     /// Executes inference for the model for given input tensors.
-    pub fn execute(inputs: &JsValue, outputs: Option<&Object>) -> JsValue;
+    #[wasm_bindgen(method)]
+    pub fn execute(this: &GraphModel, inputs: &JsValue, outputs: Option<&Object>) -> JsValue;
 
     /// Executes inference for the model for given input tensors in async fashion, use this method
     /// when your model contains control flow ops.
-    pub fn execute_async(inputs: &JsValue, outputs: Option<&Object>) -> Promise;
+    #[wasm_bindgen(method, js_name = "executeAsync")]
+    pub fn execute_async(this: &GraphModel, inputs: &JsValue, outputs: Option<&Object>) -> Promise;
 
     /// Releases the memory used by the weight tensors.
-    pub fn dispose();
+    #[wasm_bindgen(method)]
+    pub fn dispose(this: &GraphModel);
 }
