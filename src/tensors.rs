@@ -3,6 +3,12 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
+    /// SymbolicTensor is a placeholder for a Tensor without any concrete value.
+    pub type SymbolicTensor;
+}
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
     /// A Tensor object represents an immutable, multidimensional array of numbers that has a
     /// shape and a data type.
     pub type Tensor;
