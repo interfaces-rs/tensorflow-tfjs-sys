@@ -28,6 +28,11 @@ extern {
 
 #[wasm_bindgen]
 extern {
+    pub type Regularizer;
+}
+
+#[wasm_bindgen]
+extern {
     pub type DisposeResult;
 
     /// Reference count after the dispose call.
