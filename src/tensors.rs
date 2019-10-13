@@ -16,12 +16,6 @@ extern {
     /// Prints information about the Tensor including its data.
     #[wasm_bindgen(method)]
     pub fn print(this: &Tensor, verbose: bool);
-
-    /// Creates rank-0 Tensor (scalar) with the provided value and dtype.
-    pub fn scalar(value: &JsValue, dtype: Option<&str>) -> Tensor;
-
-    /// Creates a Tensor with the provided values, shape and dtype.
-    pub fn tensor(values: &Array, shape: Option<&Array>, dtype: Option<&str>) -> Tensor;
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -60,4 +54,13 @@ extern {
 
     #[wasm_bindgen(constructor)]
     pub fn new(that: &Tensor) -> Variable;
+}
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Creates rank-0 Tensor (scalar) with the provided value and dtype.
+    pub fn scalar(value: &JsValue, dtype: Option<&str>) -> Tensor;
+
+    /// Creates a Tensor with the provided values, shape and dtype.
+    pub fn tensor(values: &Array, shape: Option<&Array>, dtype: Option<&str>) -> Tensor;
 }
