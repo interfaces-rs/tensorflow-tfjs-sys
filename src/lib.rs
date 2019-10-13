@@ -23,16 +23,6 @@ extern {
 
 #[wasm_bindgen]
 extern {
-    pub type Initializer;
-}
-
-#[wasm_bindgen]
-extern {
-    pub type Regularizer;
-}
-
-#[wasm_bindgen]
-extern {
     pub type DisposeResult;
 
     /// Reference count after the dispose call.
@@ -42,4 +32,14 @@ extern {
     /// Number of variables dispose in this dispose call.
     #[wasm_bindgen(method, getter, js_name = "numDisposedVariables")]
     fn num_disposed_variables(this: &DisposeResult) -> usize;
+}
+
+#[wasm_bindgen]
+extern {
+    pub type Initializer;
+}
+
+#[wasm_bindgen]
+extern {
+    pub type Regularizer;
 }
