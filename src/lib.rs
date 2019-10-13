@@ -18,6 +18,11 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern {
+    pub type Constraint;
+}
+
+#[wasm_bindgen]
+extern {
     pub type DisposeResult;
 
     /// Reference count after the dispose call.
