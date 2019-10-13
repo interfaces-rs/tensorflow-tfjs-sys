@@ -49,3 +49,10 @@ extern {
     #[must_use]
     pub fn dispose(this: &Layer) -> DisposeResult;
 }
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// An RNNCell layer.
+    #[wasm_bindgen(extends = Layer)]
+    pub type RNNCell;
+}
