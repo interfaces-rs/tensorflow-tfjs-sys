@@ -47,13 +47,13 @@ extern {
     #[wasm_bindgen(extends = Tensor)]
     pub type Variable;
 
+    #[wasm_bindgen(constructor)]
+    pub fn new(that: &Tensor) -> Variable;
+
     /// Assign a new Tensor to this variable. The new Tensor must have the same shape and dtype as
     /// the old Tensor.
     #[wasm_bindgen(method)]
     pub fn assign(this: &Variable, value: &Tensor);
-
-    #[wasm_bindgen(constructor)]
-    pub fn new(that: &Tensor) -> Variable;
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
