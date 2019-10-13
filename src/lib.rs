@@ -14,6 +14,7 @@ pub use models::*;
 pub use tensors::*;
 pub use training::*;
 
+use js_sys::JsString;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
