@@ -30,7 +30,16 @@ extern {
 
     /// Adds a weight variable to the layer.
     #[wasm_bindgen(method, js_name = "addWeights")]
-    pub fn add_weight(this: &Layer, name: &JsString, shape: &Array, dtype: Option<&str>, initializer: Option<&Initializer>, regularizer: Option<&Regularizer>, trainable: Option<bool>, constraint: Option<&Constraint>);
+    pub fn add_weight(
+        this: &Layer,
+        name: &JsString,
+        shape: &Array,
+        dtype: Option<&str>,
+        initializer: Option<&Initializer>,
+        regularizer: Option<&Regularizer>,
+        trainable: Option<bool>,
+        constraint: Option<&Constraint>,
+    );
 
     /// Add losses to the layer.
     #[wasm_bindgen(method, js_name = "addLoss")]
