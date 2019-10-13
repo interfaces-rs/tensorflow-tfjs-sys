@@ -1,4 +1,3 @@
-
 use crate::Serializable;
 use wasm_bindgen::prelude::*;
 

@@ -1,5 +1,4 @@
-use crate::Serializable;
-use crate::Tensor;
+use crate::{Serializable, Tensor};
 use js_sys::Function;
 use wasm_bindgen::prelude::*;
 
