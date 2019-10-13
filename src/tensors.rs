@@ -1,3 +1,4 @@
+use crate::DType;
 use js_sys::{Array, Float32Array};
 use wasm_bindgen::prelude::*;
 
@@ -30,7 +31,7 @@ extern {
     /// modifying directly buffer.values.
     ///
     /// When done, call buffer.toTensor() to get an immutable Tensor with those values.
-    pub fn buffer(shape: &Array, dtype: Option<&str>, values: Option<&Float32Array>) -> TensorBuffer;
+    pub fn buffer(shape: &Array, dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
 
     /// Sets a value in the buffer at a given location.
     #[wasm_bindgen(method, variadic)]

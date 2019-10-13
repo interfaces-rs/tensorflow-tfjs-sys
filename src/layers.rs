@@ -1,4 +1,4 @@
-use crate::{Constraint, DisposeResult, Initializer, Regularizer};
+use crate::{Constraint, DisposeResult, DType, Initializer, Regularizer};
 use js_sys::{Array, JsString, Object};
 use wasm_bindgen::prelude::*;
 
@@ -34,7 +34,7 @@ extern {
         this: &Layer,
         name: &JsString,
         shape: &Array,
-        dtype: Option<&str>,
+        dtype: Option<DType>,
         initializer: Option<&Initializer>,
         regularizer: Option<&Regularizer>,
         trainable: Option<bool>,

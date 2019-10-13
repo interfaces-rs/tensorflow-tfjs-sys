@@ -15,6 +15,8 @@ pub use training::*;
 use js_sys::JsString;
 use wasm_bindgen::prelude::*;
 
+pub type DType = &'static str;
+
 #[wasm_bindgen]
 extern {
     pub type Constraint;
