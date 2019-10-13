@@ -4,6 +4,7 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Represents a potentially large collection of delimited text records.
+    #[wasm_bindgen(extends = Dataset)]
     pub type CSVDataset;
 
     /// Returns column names of the csv dataset.
