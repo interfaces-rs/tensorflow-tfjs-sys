@@ -43,3 +43,20 @@ extern {
 extern {
     pub type Regularizer;
 }
+
+#[wasm_bindgen]
+extern {
+    /// Serializable defines the serialization contract.
+    pub type Serializable;
+
+    /// Return the class name for this class to use in serialization contexts.
+    #[wasm_bindgen(method)]
+    pub fn get_class_name(this: &Serializable) -> JsString;
+
+    /// Return all the non-weight state needed to serialize this object.
+    #[wasm_bindgen(method)]
+    pub fn get_config(this: &Serializable) -> JsString;
+
+// FIXME
+// pub fn from_config(class, config);
+}
