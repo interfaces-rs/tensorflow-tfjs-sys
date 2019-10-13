@@ -27,11 +27,11 @@ extern {
 
     /// Reference count after the dispose call.
     #[wasm_bindgen(method, getter, js_name = "refCountAfterDispose")]
-    fn ref_count_after_dispose(this: &DisposeResult) -> usize;
+    pub fn ref_count_after_dispose(this: &DisposeResult) -> usize;
 
     /// Number of variables dispose in this dispose call.
     #[wasm_bindgen(method, getter, js_name = "numDisposedVariables")]
-    fn num_disposed_variables(this: &DisposeResult) -> usize;
+    pub fn num_disposed_variables(this: &DisposeResult) -> usize;
 }
 
 #[wasm_bindgen]
