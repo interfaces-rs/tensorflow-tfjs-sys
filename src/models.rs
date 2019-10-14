@@ -1,4 +1,4 @@
-use crate::{data::Dataset, layers::Layer};
+use crate::{data::Dataset, layers::Layer, tensors::SymbolicTensor, OpMapper};
 use js_sys::{Function, JsString, Object, Promise};
 use wasm_bindgen::prelude::*;
 
@@ -124,7 +124,8 @@ extern {
 }
 
 pub mod io {
-    use js_sys::{Function, JsString, Object, Promise};
+    use crate::IOHandler;
+    use js_sys::{Array, Object, Promise};
     use wasm_bindgen::prelude::*;
 
     #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -154,26 +155,38 @@ pub mod io {
     }
 }
 
-// Creation
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+extern {
+    /// Creates a Sequential model. A sequential model is any model where the outputs of one
+    /// layer are the inputs to the next layer, i.e. the model topology is a simple 'stack' of
+    /// layers, with no branching or skipping.
+    pub fn sequential(config: Option<&Object>) -> Sequential;
 
-// Inputs
-#[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+    /// A model is a data structure that consists of Layers and defines inputs and outputs.
+    pub fn model(args: &Object) -> LayersModel;
 
-// Loading
-#[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+    /// Load a graph model given a URL to the model definition.
+    #[wasm_bindgen(js_name = "loadGraphModel")]
+    pub fn load_graph_model(model_url: &JsValue, options: Option<&Object>) -> Promise;
 
-// Management
-#[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+    /// Load a model composed of Layer objects, including its topology and optionally weights. See
+    /// the Tutorial named "How to import a Keras Model" for usage examples.
+    pub fn load_layers_model(path_or_io_handler: &JsValue, options: Option<&Object>) -> Promise;
 
-// Serialization
-#[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+    /// Used to instantiate an input to a model as a SymbolicTensor.
+    pub fn input(config: &Object) -> SymbolicTensor;
 
-// Op Registry
-#[wasm_bindgen(module = "@tensorflow/tfjs")]
-extern {}
+    /// Register a class with the serialization map of TensorFlow.js.
+    #[wasm_bindgen(js_name = "registerClass")]
+    pub fn register_class(cls: &JsValue);
+
+    /// Deregister the Op for graph model executor.
+    pub fn deregister_op(name: &str);
+
+    /// Retrieve the OpMapper object for the registered op.
+    pub fn get_registered_op(name: &str) -> OpMapper;
+
+    /// Register an Op for graph model executor. This allow you to register TensorFlow custom op or
+    /// override existing op.
+    pub fn registered_op(name: &str, op_func: &Object) -> OpMapper;
+}
