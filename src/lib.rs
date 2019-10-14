@@ -26,6 +26,11 @@ extern {
 
 #[wasm_bindgen]
 extern {
+    pub type DatasetContainer;
+}
+
+#[wasm_bindgen]
+extern {
     pub type DisposeResult;
 
     /// Reference count after the dispose call.
