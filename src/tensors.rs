@@ -332,8 +332,20 @@ extern {
 
     /// Creates a Tensor with values sampled from a normal distribution.
     // FIXME: seed type?
-    pub fn random_normal(shape: &Array, mean: Option<&Number>, std_dev: Option<&Number>, dtype: Option<DType>, seed: Option<usize>) -> Tensor;
+    pub fn random_normal(
+        shape: &Array,
+        mean: Option<&Number>,
+        std_dev: Option<&Number>,
+        dtype: Option<DType>,
+        seed: Option<usize>,
+    ) -> Tensor;
 
     /// Creates a Tensor with values sampled from a uniform distribution.
-    pub fn random_uniform(shape: &Array, minval: Option<&Number>, maxval: Option<&Number>, dtype: Option<DType>, seed: Option<usize>) -> Tensor;
+    pub fn random_uniform(
+        shape: &Array,
+        minval: Option<&Number>,
+        maxval: Option<&Number>,
+        dtype: Option<DType>,
+        seed: Option<usize>,
+    ) -> Tensor;
 }
