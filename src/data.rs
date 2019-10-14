@@ -1,4 +1,5 @@
-use js_sys::{Function, Object, Promise};
+use crate::DatasetContainer;
+use js_sys::{Array, Function, Object, Promise};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -71,4 +72,33 @@ extern {
     /// Collect all elements of this dataset into an array.
     #[wasm_bindgen(method, js_name = "toArray")]
     pub fn to_array(this: &Dataset) -> Promise;
+}
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Create a Dataset from an array of elements.
+    pub fn array(items: &Array) -> Dataset;
+
+    /// Create a CSVDataset by reading and decoding CSV file(s) from provided URL or local path if
+    /// it's in Node environment.
+    pub fn csv(source: &JsValue, csv_config: Option<&Object>) -> CSVDataset;
+
+    /// Create a Dataset that produces each element from provided JavaScript generator.
+    pub fn generator(fun: &Function) -> Dataset;
+
+    /// Create an iterator that generate frequency-domain spectrogram Tensors from microphone audio
+    /// stream with browser's native FFT. This API only works in browser environment when the device
+    /// has microphone.
+    #[must_use]
+    pub fn microphone(config: Option<&Object>) -> Promise;
+
+    /// Create an iterator that generate Tensors from webcam video stream. This API only works in
+    /// Browser environment when the device has webcam.
+    // FIXME: use web-sys for elem type
+    pub fn webcam(elem: &JsValue, config: Option<&Object>) -> Promise;
+
+    /// Create a Dataset by zipping together an array, dict, or nested structure of Datasets (and
+    /// perhaps additional constants). The underlying datasets must provide elements in a consistent
+    /// order such that they correspond.
+    pub fn zip(datasets: &DatasetContainer) -> Dataset;
 }
