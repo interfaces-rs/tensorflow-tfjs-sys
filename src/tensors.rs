@@ -153,6 +153,7 @@ extern {
     pub fn assign(this: &Variable, value: &Tensor);
 }
 
+// Creation functions
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates an empty TensorBuffer with the specified shape and dtype.
