@@ -57,7 +57,12 @@ extern {
     /// Pseudorandomly shuffles the elements of this dataset. This is done in a streaming manner, by
     /// sampling from a given number of prefetched elements.
     #[wasm_bindgen(method)]
-    pub fn shuffle(this: &Dataset, buffer_size: usize, seed: Option<&str>, reshuffle_each_iteration: Option<bool>) -> Dataset;
+    pub fn shuffle(
+        this: &Dataset,
+        buffer_size: usize,
+        seed: Option<&str>,
+        reshuffle_each_iteration: Option<bool>,
+    ) -> Dataset;
 
     /// Creates a Dataset with at most count initial elements from this dataset.
     #[wasm_bindgen(method)]
