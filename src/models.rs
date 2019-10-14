@@ -8,10 +8,6 @@ extern {
     /// inference exeuction.
     pub type GraphModel;
 
-    /// Execute the inference for the input tensors.
-    #[wasm_bindgen(method)]
-    pub fn predict(this: &GraphModel, inputs: &JsValue, config: Option<&Object>) -> JsValue;
-
     /// Executes inference for the model for given input tensors.
     #[wasm_bindgen(method)]
     pub fn execute(this: &GraphModel, inputs: &JsValue, outputs: Option<&Object>) -> JsValue;
@@ -25,6 +21,10 @@ extern {
     /// Releases the memory used by the weight tensors.
     #[wasm_bindgen(method)]
     pub fn dispose(this: &GraphModel);
+
+    /// Execute the inference for the input tensors.
+    #[wasm_bindgen(method)]
+    pub fn predict(this: &GraphModel, inputs: &JsValue, config: Option<&Object>) -> JsValue;
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -95,10 +95,6 @@ extern {
     #[wasm_bindgen(method)]
     pub fn add(this: &Sequential, layer: &Layer);
 
-    /// Print a text summary of the Sequential model's layers.
-    #[wasm_bindgen(method)]
-    pub fn summary(this: &Sequential, line_length: Option<u32>, positions: &[u32], print_fn: &Function);
-
     /// Returns the loss value & metrics values for the model in test mode.
     #[wasm_bindgen(method)]
     pub fn evaluate(this: &Sequential, x: &JsValue, y: &JsValue, args: Option<&Object>) -> JsValue;
@@ -107,10 +103,6 @@ extern {
     #[wasm_bindgen(method, js_name = "evaluateDataset")]
     #[must_use]
     pub fn evaluate_dataset(this: &Sequential, dataset: &Dataset, args: &Object) -> Promise;
-
-    /// Generates output predictions for the input samples.
-    #[wasm_bindgen(method)]
-    pub fn predict(this: &Sequential, x: &JsValue, args: Option<&Object>) -> JsValue;
 
     /// Trains the model for a fixed number of epochs (iterations on a dataset).
     #[wasm_bindgen(method)]
@@ -121,6 +113,14 @@ extern {
     #[wasm_bindgen(method, js_name = "fitDataset")]
     #[must_use]
     pub fn fit_dataset(this: &Sequential, dataset: &Dataset, args: &Object) -> Promise;
+
+    /// Generates output predictions for the input samples.
+    #[wasm_bindgen(method)]
+    pub fn predict(this: &Sequential, x: &JsValue, args: Option<&Object>) -> JsValue;
+
+    /// Print a text summary of the Sequential model's layers.
+    #[wasm_bindgen(method)]
+    pub fn summary(this: &Sequential, line_length: Option<u32>, positions: &[u32], print_fn: &Function);
 
     /// Runs a single gradient update on a single batch of data.
     #[wasm_bindgen(method, js_name = "trainOnBatch")]
