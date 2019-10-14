@@ -42,6 +42,11 @@ extern {
 
 #[wasm_bindgen]
 extern {
+    pub type IOHandler;
+}
+
+#[wasm_bindgen]
+extern {
     pub type Regularizer;
 }
 
