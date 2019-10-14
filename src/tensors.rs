@@ -61,7 +61,12 @@ extern {
     pub fn complex(real: &JsValue, imag: &JsValue) -> Tensor;
 
     /// Create an identity matrix.
-    pub fn eye(num_rows: usize, num_columns: Option<usize>, batch_shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn eye(
+        num_rows: usize,
+        num_columns: Option<usize>,
+        batch_shape: Option<&[usize]>,
+        dtype: Option<DType>,
+    ) -> Tensor;
 
     /// Creates a Tensor filled with a scalar value.
     pub fn fill(shape: &[usize], value: &JsValue, dtype: Option<DType>) -> Tensor;
@@ -118,10 +123,21 @@ extern {
 
     /// Creates a Tensor with values sampled from a truncated normal distribution.
     #[wasm_bindgen(js_name = "truncatedNormal")]
-    pub fn truncated_normal(shape: &[i32], mean: Option<&Number>, std_dev: Option<&Number>, dtype: Option<DType>, seed: Option<&Number>) -> Tensor;
+    pub fn truncated_normal(
+        shape: &[i32],
+        mean: Option<&Number>,
+        std_dev: Option<&Number>,
+        dtype: Option<DType>,
+        seed: Option<&Number>,
+    ) -> Tensor;
 
     /// Creates a new variable with the provided initial value.
-    pub fn variable(initial_value: &Tensor, trainable: Option<bool>, name: Option<&JsString>, dtype: Option<DType>) -> Variable;
+    pub fn variable(
+        initial_value: &Tensor,
+        trainable: Option<bool>,
+        name: Option<&JsString>,
+        dtype: Option<DType>,
+    ) -> Variable;
 
     /// Creates a Tensor with all elements set to 0.
     pub fn zeroes(shape: &[u32], dtype: Option<DType>) -> Tensor;
