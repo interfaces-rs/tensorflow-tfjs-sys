@@ -6,12 +6,14 @@ mod initializers;
 mod layers;
 mod metrics;
 mod models;
+mod performance;
 mod tensors;
 mod training;
 mod util;
 
 pub use layers::*;
 pub use models::*;
+pub use performance::*;
 pub use tensors::*;
 pub use training::*;
 
