@@ -125,6 +125,10 @@ extern {
     /// converting to an immutable Tensor.
     pub type TensorBuffer;
 
+    /// Returns the value in the buffer at the provided location.
+    #[wasm_bindgen(method, variadic)]
+    pub fn get(this: &TensorBuffer, locs: &[usize]) -> JsValue;
+
     /// Sets a value in the buffer at a given location.
     #[wasm_bindgen(method, variadic)]
     pub fn set(this: &TensorBuffer, value: &JsValue, locs: &[usize]);
