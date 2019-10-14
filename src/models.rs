@@ -19,6 +19,7 @@ extern {
     /// Executes inference for the model for given input tensors in async fashion, use this method
     /// when your model contains control flow ops.
     #[wasm_bindgen(method, js_name = "executeAsync")]
+    #[must_use]
     pub fn execute_async(this: &GraphModel, inputs: &JsValue, outputs: Option<&Object>) -> Promise;
 
     /// Releases the memory used by the weight tensors.
@@ -104,6 +105,7 @@ extern {
 
     /// Evaluate model using a dataset object.
     #[wasm_bindgen(method, js_name = "evaluateDataset")]
+    #[must_use]
     pub fn evaluate_dataset(this: &Sequential, dataset: &Dataset, args: &Object) -> Promise;
 
     /// Generates output predictions for the input samples.
@@ -112,14 +114,17 @@ extern {
 
     /// Trains the model for a fixed number of epochs (iterations on a dataset).
     #[wasm_bindgen(method)]
+    #[must_use]
     pub fn fit(this: &Sequential, x: &JsValue, y: &JsValue, args: Option<&Object>) -> Promise;
 
     /// Trains the model using a dataset object.
     #[wasm_bindgen(method, js_name = "fitDataset")]
+    #[must_use]
     pub fn fit_dataset(this: &Sequential, dataset: &Dataset, args: &Object) -> Promise;
 
     /// Runs a single gradient update on a single batch of data.
     #[wasm_bindgen(method, js_name = "trainOnBatch")]
+    #[must_use]
     pub fn train_on_batch(this: &Sequential, x: &JsValue, y: &JsValue) -> Promise;
 }
 
@@ -139,18 +144,22 @@ pub mod io {
         pub fn browser_files(files: &Array) -> IOHandler;
 
         /// Copy a model from one URL to another.
+        #[must_use]
         pub fn copy_model(src: &str, dst: &str) -> Promise;
 
         /// Creates an IOHandler subtype that sends model artifacts to HTTP server.
         pub fn http(path: &str, load_options: Option<&Object>) -> IOHandler;
 
         /// List all models stored in registered storage mediums.
+        #[must_use]
         pub fn list_models() -> Promise;
 
         /// Move a model from one URL to another.
+        #[must_use]
         pub fn move_model(src: &str, dst: &str) -> Promise;
 
         /// Remove a model specified by URL from a reigstered storage medium.
+        #[must_use]
         pub fn remove_model(url: &str) -> Promise;
     }
 }
@@ -168,10 +177,12 @@ extern {
 
     /// Load a graph model given a URL to the model definition.
     #[wasm_bindgen(js_name = "loadGraphModel")]
+    #[must_use]
     pub fn load_graph_model(model_url: &JsValue, options: Option<&Object>) -> Promise;
 
     /// Load a model composed of Layer objects, including its topology and optionally weights. See
     /// the Tutorial named "How to import a Keras Model" for usage examples.
+    #[must_use]
     pub fn load_layers_model(path_or_io_handler: &JsValue, options: Option<&Object>) -> Promise;
 
     /// A model is a data structure that consists of Layers and defines inputs and outputs.

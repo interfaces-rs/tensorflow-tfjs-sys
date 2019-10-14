@@ -44,6 +44,7 @@ extern {
 
     /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
     #[wasm_bindgen(method)]
+    #[must_use]
     pub fn array(this: &Tensor) -> Promise;
 
     /// Returns the tensor data as a nested array. The transfer of data is done synchronously.
@@ -280,6 +281,7 @@ extern {
 
     /// Computes the difference between two lists of numbers.
     #[wasm_bindgen(js_name = "setdiff1dAsync")]
+    #[must_use]
     pub fn set_diff_1d_async(x: &JsValue, y: &JsValue) -> Promise;
 
     /// This operation divides "spatial" dimensions [1, ..., M] of the input into a grid of blocks
