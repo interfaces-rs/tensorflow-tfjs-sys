@@ -291,6 +291,6 @@ extern {
     #[wasm_bindgen(js_name = "spaceToBatchND")]
     pub fn space_to_batch_nd(x: &JsValue, block_shape: &[usize], paddings: &Array) -> Tensor;
 
-    /// Removes dimensions of size 1 from the shape of a tf.Tensor.
+    /// Removes dimensions of size 1 from the shape of a Tensor.
     pub fn squeeze(x: &JsValue, axis: &[usize]) -> Tensor;
 }
