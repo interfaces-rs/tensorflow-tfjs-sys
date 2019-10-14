@@ -1,10 +1,14 @@
+mod browser;
+mod callbacks;
 mod constraints;
 mod data;
 mod initializers;
 mod layers;
+mod metrics;
 mod models;
 mod tensors;
 mod training;
+mod util;
 
 pub use layers::*;
 pub use models::*;
