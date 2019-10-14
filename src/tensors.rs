@@ -322,3 +322,18 @@ extern {
     /// Unstacks a Tensor of rank-R into a list of rank-(R-1) Tensors.
     pub fn unstack(x: &JsValue, axis: Option<usize>) -> Array;
 }
+
+// Random
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Creates a Tensor with values drawn from a multinomial distribution.
+    // FIXME: seed type?
+    pub fn multinomial(logits: &JsValue, num_samples: usize, seed: Option<usize>, normalized: Option<bool>) -> Tensor;
+
+    /// Creates a Tensor with values sampled from a normal distribution.
+    // FIXME: seed type?
+    pub fn random_normal(shape: &Array, mean: Option<&Number>, std_dev: Option<&Number>, dtype: Option<DType>, seed: Option<usize>) -> Tensor;
+
+    /// Creates a Tensor with values sampled from a uniform distribution.
+    pub fn random_uniform(shape: &Array, minval: Option<&Number>, maxval: Option<&Number>, dtype: Option<DType>, seed: Option<usize>) -> Tensor;
+}
