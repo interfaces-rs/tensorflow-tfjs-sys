@@ -1,5 +1,5 @@
 use crate::DType;
-use js_sys::{Array, Float32Array, JsString, Number};
+use js_sys::{Array, Float32Array, JsString, Number, Promise};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -14,9 +14,109 @@ extern {
     /// shape and a data type.
     pub type Tensor;
 
+    /// Converts a Tensor to a Tensor1D.
+    #[wasm_bindgen(method)]
+    pub fn as_1D(this: &Tensor) -> Tensor;
+
+    /// Converts a Tensor to a Tensor2D.
+    #[wasm_bindgen(method)]
+    pub fn as_2D(this: &Tensor) -> Tensor;
+
+    /// Converts a Tensor to a Tensor3D.
+    #[wasm_bindgen(method)]
+    pub fn as_3D(this: &Tensor) -> Tensor;
+
+    /// Converts a Tensor to a Tensor4D.
+    #[wasm_bindgen(method)]
+    pub fn as_4D(this: &Tensor) -> Tensor;
+
+    /// Converts a Tensor to a Tensor5D.
+    #[wasm_bindgen(method)]
+    pub fn as_5D(this: &Tensor) -> Tensor;
+
+    /// Converts a size-1 Tensor to a Scalar.
+    #[wasm_bindgen(method)]
+    pub fn as_scalar(this: &Tensor) -> Tensor;
+
+    /// Casts a Tensor to a specified dtype.
+    #[wasm_bindgen(method)]
+    pub fn as_type(this: &Tensor, dtype: DType) -> Tensor;
+
+    /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
+    #[wasm_bindgen(method)]
+    pub fn array(this: &Tensor) -> Promise;
+
+    /// Returns the tensor data as a nested array. The transfer of data is done synchronously.
+    #[wasm_bindgen(method)]
+    pub fn array_sync(this: &Tensor) -> Box<[JsValue]>;
+
+    /// Returns a promise of TensorBuffer that holds the underlying data.
+    #[wasm_bindgen(method)]
+    pub fn buffer(this: &Tensor);
+
+    /// Returns a TensorBuffer that holds the underlying data.
+    #[wasm_bindgen(method)]
+    pub fn buffer_sync(this: &Tensor);
+
+    /// Returns a copy of the tensor. See clone() for details.
+    #[wasm_bindgen(method)]
+    pub fn clone(this: &Tensor);
+
+    /// Asynchronously downloads the values from the Tensor. Returns a promise of TypedArray
+    /// that resolves when the computation has finished.
+    #[wasm_bindgen(method)]
+    pub fn data(this: &Tensor);
+
+    /// Synchronously downloads the values from the Tensor. This blocks the UI thread until the
+    /// values are ready, which can cause performance issues.
+    #[wasm_bindgen(method)]
+    pub fn data_sync(this: &Tensor);
+
+    /// Disposes Tensor from memory.
+    #[wasm_bindgen(method)]
+    pub fn dispose(this: &Tensor);
+
+    /// Returns a Tensor that has expanded rank, by inserting a dimension into the tensor's
+    /// shape. See expandDims() for details.
+    #[wasm_bindgen(method)]
+    pub fn expand_dims(this: &Tensor);
+
+    /// Returns the cumulative sum of the Tensor along axis.
+    #[wasm_bindgen(method)]
+    pub fn cumsum(this: &Tensor);
+
+    /// Flatten a Tensor to a 1D array.
+    #[wasm_bindgen(method)]
+    pub fn flatten(this: &Tensor);
+
     /// Prints information about the Tensor including its data.
     #[wasm_bindgen(method)]
     pub fn print(this: &Tensor, verbose: bool);
+
+    /// Reshapes the tensor into the provided shape. See reshape() for more details.
+    #[wasm_bindgen(method)]
+    pub fn reshape(this: &Tensor);
+
+    /// Reshapes the tensor into the shape of the provided tensor.
+    #[wasm_bindgen(method)]
+    pub fn reshape_as(this: &Tensor);
+
+    /// Returns a Tensor with dimensions of size 1 removed from the shape. See squeeze() for
+    /// more details.
+    #[wasm_bindgen(method)]
+    pub fn squeeze(this: &Tensor);
+
+    /// Casts the array to type bool
+    #[wasm_bindgen(method)]
+    pub fn to_bool(this: &Tensor);
+
+    /// Casts the array to type float32
+    #[wasm_bindgen(method)]
+    pub fn to_float(this: &Tensor);
+
+    /// Casts the array to type int32
+    #[wasm_bindgen(method)]
+    pub fn to_int(this: &Tensor);
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -43,8 +143,8 @@ extern {
     #[wasm_bindgen(constructor)]
     pub fn new(that: &Tensor) -> Variable;
 
-    /// Assign a new Tensor to this variable. The new Tensor must have the same shape and dtype as
-    /// the old Tensor.
+    /// Assign a new Tensor to this variable. The new Tensor must have the same shape and dtype
+    /// as the old Tensor.
     #[wasm_bindgen(method)]
     pub fn assign(this: &Variable, value: &Tensor);
 }
