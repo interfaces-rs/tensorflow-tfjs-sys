@@ -6,7 +6,6 @@ mod models;
 mod tensors;
 mod training;
 
-pub use data::*;
 pub use layers::*;
 pub use models::*;
 pub use tensors::*;
