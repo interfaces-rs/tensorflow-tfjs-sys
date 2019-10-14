@@ -250,3 +250,47 @@ extern {
     /// Creates a Tensor with all elements set to 0 with the same shape as the given tensor.
     pub fn zeroes_like(input: &JsValue) -> Tensor;
 }
+
+// Transformations
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// This operation reshapes the "batch" dimension 0 into M + 1 dimensions of shape blockShape +
+    /// [batch], interleaves these blocks back into the grid defined by the spatial dimensions [1,
+    /// ..., M], to obtain a result with the same rank as the input.
+    // FIXME: crops type
+    #[wasm_bindgen(js_name = "batchToSpaceND")]
+    pub fn batch_to_space_nd(x: &JsValue, block_shape: &[usize], crops: &Array) -> Tensor;
+
+    /// Casts a Tensor to a new dtype.
+    pub fn cast(x: &JsValue, dtype: DType) -> Tensor;
+
+    /// Rearranges data from depth into blocks of spatial data.
+    #[wasm_bindgen(js_name = "depthToSpace")]
+    pub fn depth_to_space(x: &JsValue, block_size: usize, data_format: Option<&str>) -> Tensor;
+
+    /// Returns a Tensor that has expanded rank, by inserting a dimension into the tensor's shape.
+    #[wasm_bindgen(js_name = "depthToSpace")]
+    pub fn expand_dims(x: &JsValue, axis: Option<usize>) -> Tensor;
+
+    /// Pads a Tensor with a given value and paddings.
+    pub fn pad(x: &JsValue, paddings: &Array, constant_value: &Number) -> Tensor;
+
+    /// Reshapes a Tensor to a given shape.
+    pub fn reshape(x: &JsValue, shape: &[i32]) -> Tensor;
+
+    /// Computes the difference between two lists of numbers.
+    #[wasm_bindgen(js_name = "setdiff1dAsync")]
+    pub fn set_diff_1d_async(x: &JsValue, y: &JsValue) -> Promise;
+
+    /// This operation divides "spatial" dimensions [1, ..., M] of the input into a grid of blocks
+    /// of shape blockShape, and interleaves these blocks with the "batch" dimension (0) such that
+    /// in the output, the spatial dimensions [1, ..., M] correspond to the position within the
+    /// grid, and the batch dimension combines both the position within a spatial block and the
+    /// original batch position. Prior to division into blocks, the spatial dimensions of the input
+    /// are optionally zero padded according to paddings.
+    #[wasm_bindgen(js_name = "spaceToBatchND")]
+    pub fn space_to_batch_nd(x: &JsValue, block_shape: &[usize], paddings: &Array) -> Tensor;
+
+    /// Removes dimensions of size 1 from the shape of a tf.Tensor.
+    pub fn squeeze(x: &JsValue, axis: &[usize]) -> Tensor;
+}
