@@ -1,5 +1,5 @@
 use crate::tensors::Tensor;
-use js_sys::{Function, Object};
+use js_sys::{Function, Object, Promise};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
@@ -17,4 +17,18 @@ extern {
 
     /// Returns memory info at the current time in the program.
     pub fn memory() -> Object;
+
+    /// Executes f() and returns a promise that resolves with timing information.
+    #[must_use]
+    pub fn time(f: &Function) -> Promise;
+
+    /// Returns a promise that resolve when a requestAnimationFrame has completed.
+    #[wasm_bindgen(js_name = "nextFrame")]
+    #[must_use]
+    pub fn next_frame() -> Promise;
+
+    /// Executes the provided function f() and returns a promise that resolves with information
+    /// about the function's memory use.
+    #[must_use]
+    pub fn profile(f: &Function) -> Promise;
 }
