@@ -294,3 +294,31 @@ extern {
     /// Removes dimensions of size 1 from the shape of a Tensor.
     pub fn squeeze(x: &JsValue, axis: &[usize]) -> Tensor;
 }
+
+// Slicing and Joining
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Concatenates a list of Tensors along a given axis.
+    pub fn concat(tensors: &Array, axis: Option<usize>) -> Tensor;
+
+    /// Gather slices from tensor x's axis axis according to indices.
+    pub fn gather(x: &JsValue, indices: &JsValue, axis: Option<usize>) -> Tensor;
+
+    /// Reverses a Tensor along a specified axis.
+    pub fn reverse(x: &JsValue, axis: Option<usize>) -> Tensor;
+
+    /// Extracts a slice from a Tensor starting at coordinates begin and is of size size.
+    pub fn slice(x: &JsValue, begin: &JsValue, end: &JsValue) -> Tensor;
+
+    /// Splits a Tensor into sub tensors.
+    pub fn split(x: &JsValue, num_or_size_splits: &JsValue, axis: Option<usize>) -> Array;
+
+    /// Stacks a list of rank-R Tensors into one rank-(R+1) Tensor.
+    pub fn stack(tensors: &Array, axis: usize) -> Tensor;
+
+    /// Concatenates a list of Tensors along a given axis.
+    pub fn tile(x: &JsValue, reps: &[usize]) -> Tensor;
+
+    /// Unstacks a Tensor of rank-R into a list of rank-(R-1) Tensors.
+    pub fn unstack(x: &JsValue, axis: Option<usize>) -> Array;
+}
