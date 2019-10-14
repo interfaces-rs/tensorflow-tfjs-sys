@@ -33,6 +33,7 @@ extern {
 
     /// Apply a function to every element of the dataset.
     #[wasm_bindgen(method, js_name = "forEachAsync")]
+    #[must_use]
     pub fn for_each_async(this: &Dataset, transform: &Function) -> Promise;
 
     /// Maps this dataset through a 1-to-1 transform.
@@ -71,6 +72,7 @@ extern {
 
     /// Collect all elements of this dataset into an array.
     #[wasm_bindgen(method, js_name = "toArray")]
+    #[must_use]
     pub fn to_array(this: &Dataset) -> Promise;
 }
 
@@ -95,6 +97,7 @@ extern {
     /// Create an iterator that generate Tensors from webcam video stream. This API only works in
     /// Browser environment when the device has webcam.
     // FIXME: use web-sys for elem type
+    #[must_use]
     pub fn webcam(elem: &JsValue, config: Option<&Object>) -> Promise;
 
     /// Create a Dataset by zipping together an array, dict, or nested structure of Datasets (and
