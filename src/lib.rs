@@ -27,11 +27,6 @@ pub type OpMapper = js_sys::Object;
 
 #[wasm_bindgen]
 extern {
-    pub type Constraint;
-}
-
-#[wasm_bindgen]
-extern {
     pub type DatasetContainer;
 }
 

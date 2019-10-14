@@ -1,4 +1,4 @@
-use crate::{Constraint, DType, DisposeResult, Initializer, Regularizer};
+use crate::{constraints::Constraint, DType, DisposeResult, Initializer, Regularizer};
 use js_sys::{Array, JsString, Object};
 use wasm_bindgen::prelude::*;
 
