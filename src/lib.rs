@@ -17,6 +17,9 @@ use wasm_bindgen::prelude::*;
 
 pub type DType = &'static str;
 
+// FIXME
+pub type OpMapper = js_sys::Object;
+
 #[wasm_bindgen]
 extern {
     pub type Constraint;
