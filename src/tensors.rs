@@ -164,7 +164,7 @@ extern {
     pub fn clone(tensor: &Tensor) -> Tensor;
 
     /// Converts two real numbers to a complex number.
-    pub fn complex(real: &JsValue, imag: &JsValue) -> Tensor;
+    pub fn complex(real: f32, imag: f32) -> Tensor;
 
     /// Create an identity matrix.
     pub fn eye(
