@@ -201,7 +201,7 @@ extern {
     pub fn range(start: i32, stop: i32, step: i32, dtype: Option<DType>) -> Tensor;
 
     /// Returns the real part of a complex (or real) tensor.
-    pub fn real(input: &JsValue) -> Tensor;
+    pub fn real(input: &Tensor) -> Tensor;
 
     /// Creates rank-0 Tensor (scalar) with the provided value and dtype.
     pub fn scalar(value: &JsValue, dtype: Option<DType>) -> Tensor;
