@@ -174,6 +174,39 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn one_hot() {
+        let indices = {
+            let values = {
+                let res = Array::new();
+                res.push(&0.into());
+                res.push(&1.into());
+                res
+            };
+            let dtype = Some("int32");
+            tf::tensor1d(&values, dtype)
+        };
+        let depth = 3;
+        let on_value = Default::default();
+        let off_value = Default::default();
+        tf::one_hot(&indices, depth, on_value, off_value);
+    }
+
+    #[wasm_bindgen_test]
+    fn ones() {
+        let shape: &[i32] = &[2, 2];
+        let dtype = Default::default();
+        tf::ones(shape, dtype);
+    }
+
+    #[wasm_bindgen_test]
+    fn ones_like() {
+        let value = Array::new();
+        let dtype = Default::default();
+        let tensor = tf::tensor1d(&value.into(), dtype);
+        tf::ones_like(&tensor);
+    }
+
+    #[wasm_bindgen_test]
     fn print() {
         let value: u32 = Default::default();
         let dtype = Default::default();
