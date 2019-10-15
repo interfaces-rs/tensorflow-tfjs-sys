@@ -1,3 +1,14 @@
+mod helper {
+    use js_sys::Array;
+    use tfjs_sys as tf;
+
+    pub fn tensor() -> tf::Tensor {
+        let value = Array::new();
+        let dtype = Default::default();
+        tf::tensor1d(&value.into(), dtype)
+    }
+}
+
 mod tensor {
     use js_sys::Array;
     use tfjs_sys as tf;
