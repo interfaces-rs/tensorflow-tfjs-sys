@@ -106,6 +106,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn print() {
+            let tensor = helper::tensor();
+            let verbose = Default::default();
+            tf::print(&tensor, verbose);
+        }
+
+        #[wasm_bindgen_test]
         fn range() {
             let start = 0;
             let stop = 9;
