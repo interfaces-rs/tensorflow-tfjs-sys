@@ -4,6 +4,14 @@ mod tensor {
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
+    fn buffer() {
+        let shape = Array::new();
+        let dtype = Default::default();
+        let values = Default::default();
+        tf::buffer(&shape, dtype, values);
+    }
+
+    #[wasm_bindgen_test]
     fn eye() {
         let num_rows = Default::default();
         let num_columns = Default::default();
