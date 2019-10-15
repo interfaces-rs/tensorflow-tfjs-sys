@@ -249,6 +249,7 @@ extern {
     pub fn zeros(shape: &[usize], dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with all elements set to 0 with the same shape as the given tensor.
+    #[wasm_bindgen(js_name = "zerosLike")]
     pub fn zeros_like(input: &Tensor) -> Tensor;
 }
 
