@@ -198,7 +198,7 @@ extern {
     pub fn print(x: &Tensor, verbose: Option<bool>);
 
     /// Creates a new Tensor1D filled with the numbers in the range provided.
-    pub fn range(start: i32, stop: i32, step: i32, dtype: Option<DType>) -> Tensor;
+    pub fn range(start: i32, stop: i32, step: Option<i32>, dtype: Option<DType>) -> Tensor;
 
     /// Returns the real part of a complex (or real) tensor.
     pub fn real(input: &Tensor) -> Tensor;
