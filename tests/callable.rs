@@ -271,7 +271,9 @@ mod tensor {
 
     mod methods {
         use js_sys::Array;
+        use super::super::helper;
         use tfjs_sys as tf;
+        use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
 
         #[wasm_bindgen_test]
@@ -288,6 +290,19 @@ mod tensor {
             let dtype = Default::default();
             let tensor = tf::scalar(&value.into(), dtype);
             tensor.as_scalar();
+        }
+
+        #[wasm_bindgen_test]
+        async fn array() {
+            let tensor = helper::tensor();
+            let promise = tensor.array();
+            JsFuture::from(promise).await.unwrap();
+        }
+
+        #[wasm_bindgen_test]
+        async fn array_sync() {
+            let tensor = helper::tensor();
+            tensor.array_sync();
         }
 
         #[wasm_bindgen_test]
