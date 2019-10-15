@@ -15,31 +15,31 @@ extern {
     pub type Tensor;
 
     /// Converts a Tensor to a Tensor1D.
-    #[wasm_bindgen(method)]
-    pub fn as_1D(this: &Tensor) -> Tensor;
+    #[wasm_bindgen(method, js_name = "as1D")]
+    pub fn as_1d(this: &Tensor) -> Tensor;
 
     /// Converts a Tensor to a Tensor2D.
-    #[wasm_bindgen(method)]
-    pub fn as_2D(this: &Tensor) -> Tensor;
+    #[wasm_bindgen(method, js_name = "as2D")]
+    pub fn as_2d(this: &Tensor) -> Tensor;
 
     /// Converts a Tensor to a Tensor3D.
-    #[wasm_bindgen(method)]
-    pub fn as_3D(this: &Tensor) -> Tensor;
+    #[wasm_bindgen(method, js_name = "as3D")]
+    pub fn as_3d(this: &Tensor) -> Tensor;
 
     /// Converts a Tensor to a Tensor4D.
-    #[wasm_bindgen(method)]
-    pub fn as_4D(this: &Tensor) -> Tensor;
+    #[wasm_bindgen(method, js_name = "as4D")]
+    pub fn as_4d(this: &Tensor) -> Tensor;
 
     /// Converts a Tensor to a Tensor5D.
-    #[wasm_bindgen(method)]
-    pub fn as_5D(this: &Tensor) -> Tensor;
+    #[wasm_bindgen(method, js_name = "as5D")]
+    pub fn as_5d(this: &Tensor) -> Tensor;
 
     /// Converts a size-1 Tensor to a Scalar.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "asScalar")]
     pub fn as_scalar(this: &Tensor) -> Tensor;
 
     /// Casts a Tensor to a specified dtype.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "asType")]
     pub fn as_type(this: &Tensor, dtype: DType) -> Tensor;
 
     /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
@@ -48,7 +48,7 @@ extern {
     pub fn array(this: &Tensor) -> Promise;
 
     /// Returns the tensor data as a nested array. The transfer of data is done synchronously.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "arraySync")]
     pub fn array_sync(this: &Tensor) -> Box<[JsValue]>;
 
     /// Returns a promise of TensorBuffer that holds the underlying data.
@@ -56,7 +56,7 @@ extern {
     pub fn buffer(this: &Tensor);
 
     /// Returns a TensorBuffer that holds the underlying data.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "bufferSync")]
     pub fn buffer_sync(this: &Tensor);
 
     /// Returns a copy of the tensor. See clone() for details.
@@ -70,7 +70,7 @@ extern {
 
     /// Synchronously downloads the values from the Tensor. This blocks the UI thread until the
     /// values are ready, which can cause performance issues.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "dataSync")]
     pub fn data_sync(this: &Tensor);
 
     /// Disposes Tensor from memory.
@@ -79,7 +79,7 @@ extern {
 
     /// Returns a Tensor that has expanded rank, by inserting a dimension into the tensor's
     /// shape. See expandDims() for details.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "expandDims")]
     pub fn expand_dims(this: &Tensor);
 
     /// Returns the cumulative sum of the Tensor along axis.
@@ -99,7 +99,7 @@ extern {
     pub fn reshape(this: &Tensor);
 
     /// Reshapes the tensor into the shape of the provided tensor.
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "reshapeAs")]
     pub fn reshape_as(this: &Tensor);
 
     /// Returns a Tensor with dimensions of size 1 removed from the shape. See squeeze() for
@@ -108,15 +108,15 @@ extern {
     pub fn squeeze(this: &Tensor);
 
     /// Casts the array to type bool
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "toBool")]
     pub fn to_bool(this: &Tensor);
 
     /// Casts the array to type float32
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "toFloat")]
     pub fn to_float(this: &Tensor);
 
     /// Casts the array to type int32
-    #[wasm_bindgen(method)]
+    #[wasm_bindgen(method, js_name = "toInt")]
     pub fn to_int(this: &Tensor);
 }
 
