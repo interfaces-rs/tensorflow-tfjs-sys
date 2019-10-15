@@ -5,7 +5,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn buffer() {
-        let shape = Array::new();
+        let shape: &[usize] = &[];
         let dtype = Default::default();
         let values = Default::default();
         tf::buffer(&shape, dtype, values);
