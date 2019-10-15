@@ -237,6 +237,17 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn variable() {
+        let value = Array::new();
+        let dtype = Default::default();
+        let tensor = tf::tensor1d(&value.into(), dtype);
+        let trainable = Default::default();
+        let name = Default::default();
+        let dtype = Default::default();
+        tf::variable(&tensor, trainable, name, dtype);
+    }
+
+    #[wasm_bindgen_test]
     fn zeros() {
         let shape: &[usize] = &[2, 2];
         let dtype = Default::default();
