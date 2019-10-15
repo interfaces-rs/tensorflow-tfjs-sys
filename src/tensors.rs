@@ -249,7 +249,7 @@ extern {
     pub fn zeroes(shape: &[usize], dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with all elements set to 0 with the same shape as the given tensor.
-    pub fn zeroes_like(input: &JsValue) -> Tensor;
+    pub fn zeroes_like(input: &Tensor) -> Tensor;
 }
 
 // Transformations
