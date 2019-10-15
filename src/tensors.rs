@@ -178,7 +178,7 @@ extern {
     pub fn fill(shape: &[i32], value: i32, dtype: Option<DType>) -> Tensor;
 
     /// Returns the imaginary part of a complex (or real) tensor.
-    pub fn imag(input: &JsValue) -> Tensor;
+    pub fn imag(input: &Tensor) -> Tensor;
 
     /// Return an evenly spaced sequence of numbers over the given interval.
     pub fn linspace(start: &Number, stop: &Number, num: usize) -> Tensor;
