@@ -192,7 +192,7 @@ extern {
 
     /// Creates a Tensor with all elements set to 1 with the same shape as the given tensor.
     #[wasm_bindgen(js_name = "onesLike")]
-    pub fn ones_like(x: &JsValue) -> Tensor;
+    pub fn ones_like(x: &Tensor) -> Tensor;
 
     /// Prints information about the Tensor including its data.
     pub fn print(x: &Tensor, verbose: Option<bool>);
