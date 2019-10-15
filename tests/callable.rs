@@ -22,7 +22,7 @@ mod tensor {
     //         res.push(&4.into());
     //         res
     //     };
-    //     let shape: Option<&[usize]> = Some(&[2, 2]);
+    //     let shape: Option<&[i32]> = Some(&[2, 2]);
     //     let dtype = Default::default();
     //     let tensor = tf::tensor2d(&value.into(), shape, dtype);
     //     let rows = Default::default();
@@ -42,7 +42,7 @@ mod tensor {
     //         res.push(&4.into());
     //         res
     //     };
-    //     let shape: Option<&[usize]> = Some(&[2, 2, 1]);
+    //     let shape: Option<&[i32]> = Some(&[2, 2, 1]);
     //     let dtype = Default::default();
     //     let tensor = tf::tensor3d(&value.into(), shape, dtype);
     //     let rows = Default::default();
@@ -62,7 +62,7 @@ mod tensor {
     //         res.push(&4.into());
     //         res
     //     };
-    //     let shape: Option<&[usize]> = Some(&[1, 2, 2, 1]);
+    //     let shape: Option<&[i32]> = Some(&[1, 2, 2, 1]);
     //     let dtype = Default::default();
     //     let tensor = tf::tensor4d(&value.into(), shape, dtype);
     //     let rows = Default::default();
@@ -87,7 +87,7 @@ mod tensor {
     //         res.push(&8.into());
     //         res
     //     };
-    //     let shape: Option<&[usize]> = Some(&[1, 2, 2, 2, 1]);
+    //     let shape: Option<&[i32]> = Some(&[1, 2, 2, 2, 1]);
     //     let dtype = Default::default();
     //     let tensor = tf::tensor5d(&value.into(), shape, dtype);
     //     let rows = Default::default();
@@ -108,7 +108,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn buffer() {
-        let shape: &[usize] = &[];
+        let shape: &[i32] = &[];
         let dtype = Default::default();
         let values = Default::default();
         tf::buffer(&shape, dtype, values);
@@ -163,7 +163,7 @@ mod tensor {
             res.push(&4.into());
             res
         };
-        let shape: Option<&[usize]> = Some(&[2, 2]);
+        let shape: Option<&[i32]> = Some(&[2, 2]);
         let dtype = Default::default();
         tf::tensor2d(&values, shape, dtype);
     }
@@ -178,7 +178,7 @@ mod tensor {
             res.push(&4.into());
             res
         };
-        let shape: Option<&[usize]> = Some(&[2, 2, 1]);
+        let shape: Option<&[i32]> = Some(&[2, 2, 1]);
         let dtype = Default::default();
         tf::tensor3d(&values, shape, dtype);
     }
@@ -193,7 +193,7 @@ mod tensor {
             res.push(&4.into());
             res
         };
-        let shape: Option<&[usize]> = Some(&[1, 2, 2, 1]);
+        let shape: Option<&[i32]> = Some(&[1, 2, 2, 1]);
         let dtype = Default::default();
         tf::tensor4d(&values, shape, dtype);
     }
@@ -212,7 +212,7 @@ mod tensor {
             res.push(&8.into());
             res
         };
-        let shape: Option<&[usize]> = Some(&[1, 2, 2, 2, 1]);
+        let shape: Option<&[i32]> = Some(&[1, 2, 2, 2, 1]);
         let dtype = Default::default();
         tf::tensor5d(&values, shape, dtype);
     }
@@ -231,7 +231,7 @@ mod tensor {
             res.push(&8.into());
             res
         };
-        let shape: Option<&[usize]> = Some(&[1, 1, 2, 2, 2, 1]);
+        let shape: Option<&[i32]> = Some(&[1, 1, 2, 2, 2, 1]);
         let dtype = Default::default();
         tf::tensor6d(&values, shape, dtype);
     }
@@ -249,14 +249,14 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn zeros() {
-        let shape: &[usize] = &[2, 2];
+        let shape: &[i32] = &[2, 2];
         let dtype = Default::default();
         tf::zeros(shape, dtype);
     }
 
     #[wasm_bindgen_test]
     fn zeros_like() {
-        let shape: &[usize] = &[2, 2];
+        let shape: &[i32] = &[2, 2];
         let dtype = Default::default();
         let tensor = tf::zeros(shape, dtype);
         tf::zeros_like(&tensor);

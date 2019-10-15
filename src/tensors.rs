@@ -158,7 +158,7 @@ extern {
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates an empty TensorBuffer with the specified shape and dtype.
-    pub fn buffer(shape: &[usize], dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
+    pub fn buffer(shape: &[i32], dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
 
     /// Creates a new tensor with the same values and shape as the specified tensor.
     pub fn clone(x: &JsValue) -> Tensor;
@@ -175,7 +175,7 @@ extern {
     ) -> Tensor;
 
     /// Creates a Tensor filled with a scalar value.
-    pub fn fill(shape: &[usize], value: &JsValue, dtype: Option<DType>) -> Tensor;
+    pub fn fill(shape: &[i32], value: &JsValue, dtype: Option<DType>) -> Tensor;
 
     /// Returns the imaginary part of a complex (or real) tensor.
     pub fn imag(input: &JsValue) -> Tensor;
@@ -188,7 +188,7 @@ extern {
     pub fn one_hot(indices: &JsValue, depth: usize, on_value: &Number, off_value: &Number) -> Tensor;
 
     /// Creates a Tensor with all elements set to 1.
-    pub fn ones(shape: &[usize], dtype: Option<DType>) -> Tensor;
+    pub fn ones(shape: &[i32], dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with all elements set to 1 with the same shape as the given tensor.
     #[wasm_bindgen(js_name = "onesLike")]
@@ -207,25 +207,25 @@ extern {
     pub fn scalar(value: &JsValue, dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with the provided values, shape and dtype.
-    pub fn tensor(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-1 Tensor with the provided values, shape and dtype.
     pub fn tensor1d(values: &Array, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-2 Tensor with the provided values, shape and dtype.
-    pub fn tensor2d(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor2d(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-3 Tensor with the provided values, shape and dtype.
-    pub fn tensor3d(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor3d(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-4 Tensor with the provided values, shape and dtype.
-    pub fn tensor4d(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor4d(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-5 Tensor with the provided values, shape and dtype.
-    pub fn tensor5d(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor5d(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates rank-6 Tensor with the provided values, shape and dtype.
-    pub fn tensor6d(values: &Array, shape: Option<&[usize]>, dtype: Option<DType>) -> Tensor;
+    pub fn tensor6d(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with values sampled from a truncated normal distribution.
     #[wasm_bindgen(js_name = "truncatedNormal")]
@@ -246,7 +246,7 @@ extern {
     ) -> Variable;
 
     /// Creates a Tensor with all elements set to 0.
-    pub fn zeros(shape: &[usize], dtype: Option<DType>) -> Tensor;
+    pub fn zeros(shape: &[i32], dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with all elements set to 0 with the same shape as the given tensor.
     #[wasm_bindgen(js_name = "zerosLike")]
@@ -292,7 +292,7 @@ extern {
     /// original batch position. Prior to division into blocks, the spatial dimensions of the input
     /// are optionally zero padded according to paddings.
     #[wasm_bindgen(js_name = "spaceToBatchND")]
-    pub fn space_to_batch_nd(x: &JsValue, block_shape: &[usize], paddings: &Array) -> Tensor;
+    pub fn space_to_batch_nd(x: &JsValue, shape: &[i32], paddings: &Array) -> Tensor;
 
     /// Removes dimensions of size 1 from the shape of a Tensor.
     pub fn squeeze(x: &JsValue, axis: &[usize]) -> Tensor;
@@ -336,7 +336,7 @@ extern {
     /// Creates a Tensor with values sampled from a normal distribution.
     // FIXME: seed type?
     pub fn random_normal(
-        shape: &Array,
+        shape: &[i32],
         mean: Option<&Number>,
         std_dev: Option<&Number>,
         dtype: Option<DType>,
@@ -345,7 +345,7 @@ extern {
 
     /// Creates a Tensor with values sampled from a uniform distribution.
     pub fn random_uniform(
-        shape: &Array,
+        shape: &[i32],
         minval: Option<&Number>,
         maxval: Option<&Number>,
         dtype: Option<DType>,
