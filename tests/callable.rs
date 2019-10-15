@@ -3,6 +3,16 @@ mod tensor {
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
+    fn eye() {
+        let num_rows = Default::default();
+        let num_columns = Default::default();
+        let batch_shape = Default::default();
+        let dtype = Default::default();
+        let tensor = tf::eye(num_rows, num_columns, batch_shape, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
     fn print() {
         let value: u32 = Default::default();
         let dtype = Default::default();
