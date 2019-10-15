@@ -185,7 +185,7 @@ extern {
 
     /// Creates a one-hot Tensor.
     #[wasm_bindgen(js_name = "oneHot")]
-    pub fn one_hot(indices: &JsValue, depth: usize, on_value: &Number, off_value: &Number) -> Tensor;
+    pub fn one_hot(indices: &Tensor, depth: usize, on_value: i32, off_value: i32) -> Tensor;
 
     /// Creates a Tensor with all elements set to 1.
     pub fn ones(shape: &[i32], dtype: Option<DType>) -> Tensor;
