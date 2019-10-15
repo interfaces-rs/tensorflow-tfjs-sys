@@ -150,6 +150,14 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn fill() {
+        let shape: &[i32] = &[2, 2];
+        let value = 4;
+        let dtype = Default::default();
+        tf::fill(shape, value, dtype);
+    }
+
+    #[wasm_bindgen_test]
     fn print() {
         let value: u32 = Default::default();
         let dtype = Default::default();
