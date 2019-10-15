@@ -106,14 +106,6 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
-        fn print() {
-            let value: u32 = Default::default();
-            let dtype = Default::default();
-            let tensor = tf::scalar(&value.into(), dtype);
-            tensor.print(false);
-        }
-
-        #[wasm_bindgen_test]
         fn range() {
             let start = 0;
             let stop = 9;
@@ -289,6 +281,14 @@ mod tensor {
             let dtype = Default::default();
             let tensor = tf::scalar(&value.into(), dtype);
             tensor.as_scalar();
+        }
+
+        #[wasm_bindgen_test]
+        fn print() {
+            let value: u32 = Default::default();
+            let dtype = Default::default();
+            let tensor = tf::scalar(&value.into(), dtype);
+            tensor.print(false);
         }
     }
 }
