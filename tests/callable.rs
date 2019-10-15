@@ -182,6 +182,15 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn range() {
+        let start = 0;
+        let stop = 9;
+        let step = Default::default();
+        let dtype = Default::default();
+        tf::range(start, stop, step, dtype);
+    }
+
+    #[wasm_bindgen_test]
     fn real() {
         let real = Default::default();
         let imag = Default::default();
