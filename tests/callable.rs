@@ -123,6 +123,13 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn complex() {
+        let real = Default::default();
+        let imag = Default::default();
+        tf::complex(real, imag);
+    }
+
+    #[wasm_bindgen_test]
     fn eye() {
         let num_rows = Default::default();
         let num_columns = Default::default();
