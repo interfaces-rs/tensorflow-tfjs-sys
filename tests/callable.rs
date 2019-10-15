@@ -237,6 +237,16 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn truncated_normal() {
+        let shape: &[i32] = &[2, 2];
+        let mean = Default::default();
+        let std_dev = Default::default();
+        let dtype = Default::default();
+        let seed = Default::default();
+        tf::truncated_normal(shape, mean, std_dev, dtype, seed);
+    }
+
+    #[wasm_bindgen_test]
     fn variable() {
         let value = Array::new();
         let dtype = Default::default();
