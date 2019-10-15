@@ -292,9 +292,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn zeros_like() {
-        let shape: &[i32] = &[2, 2];
-        let dtype = Default::default();
-        let tensor = tf::zeros(shape, dtype);
+        let tensor = super::helper::tensor();
         tf::zeros_like(&tensor);
     }
 }
