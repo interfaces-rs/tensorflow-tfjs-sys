@@ -3,6 +3,7 @@ mod callbacks;
 mod constraints;
 mod data;
 mod initializers;
+pub mod io;
 mod layers;
 mod metrics;
 mod models;

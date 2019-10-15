@@ -128,42 +128,6 @@ extern {
     pub fn train_on_batch(this: &Sequential, x: &JsValue, y: &JsValue) -> Promise;
 }
 
-pub mod io {
-    use crate::IOHandler;
-    use js_sys::{Array, Object, Promise};
-    use wasm_bindgen::prelude::*;
-
-    #[wasm_bindgen(module = "@tensorflow/tfjs")]
-    extern {
-        /// Creates an IOHandler that triggers file downloads from the browser.
-        #[wasm_bindgen(js_name = "browserDownloads")]
-        pub fn browser_downloads(file_name_prefix: Option<&str>) -> IOHandler;
-
-        /// Creates an IOHandler that loads model artifacts from user-selected files.
-        #[wasm_bindgen(js_name = "browserFiles")]
-        pub fn browser_files(files: &Array) -> IOHandler;
-
-        /// Copy a model from one URL to another.
-        #[must_use]
-        pub fn copy_model(src: &str, dst: &str) -> Promise;
-
-        /// Creates an IOHandler subtype that sends model artifacts to HTTP server.
-        pub fn http(path: &str, load_options: Option<&Object>) -> IOHandler;
-
-        /// List all models stored in registered storage mediums.
-        #[must_use]
-        pub fn list_models() -> Promise;
-
-        /// Move a model from one URL to another.
-        #[must_use]
-        pub fn move_model(src: &str, dst: &str) -> Promise;
-
-        /// Remove a model specified by URL from a reigstered storage medium.
-        #[must_use]
-        pub fn remove_model(url: &str) -> Promise;
-    }
-}
-
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Deregister the Op for graph model executor.
