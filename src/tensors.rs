@@ -246,10 +246,10 @@ extern {
     ) -> Variable;
 
     /// Creates a Tensor with all elements set to 0.
-    pub fn zeroes(shape: &[usize], dtype: Option<DType>) -> Tensor;
+    pub fn zeros(shape: &[usize], dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with all elements set to 0 with the same shape as the given tensor.
-    pub fn zeroes_like(input: &Tensor) -> Tensor;
+    pub fn zeros_like(input: &Tensor) -> Tensor;
 }
 
 // Transformations
