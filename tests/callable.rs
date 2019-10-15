@@ -17,8 +17,7 @@ mod tensor {
         let num_columns = Default::default();
         let batch_shape = Default::default();
         let dtype = Default::default();
-        let tensor = tf::eye(num_rows, num_columns, batch_shape, dtype);
-        tensor.print(false);
+        tf::eye(num_rows, num_columns, batch_shape, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -33,8 +32,7 @@ mod tensor {
     fn scalar() {
         let value: u32 = Default::default();
         let dtype = Default::default();
-        let tensor = tf::scalar(&value.into(), dtype);
-        tensor.print(false);
+        tf::scalar(&value.into(), dtype);
     }
 
     #[wasm_bindgen_test]
@@ -42,16 +40,14 @@ mod tensor {
         let values = Array::new();
         let shape = Default::default();
         let dtype = Default::default();
-        let tensor = tf::tensor(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor(&values, shape, dtype);
     }
 
     #[wasm_bindgen_test]
     fn tensor1d() {
         let values = Array::new();
         let dtype = Default::default();
-        let tensor = tf::tensor1d(&values, dtype);
-        tensor.print(false);
+        tf::tensor1d(&values, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -66,8 +62,7 @@ mod tensor {
         };
         let shape: Option<&[usize]> = Some(&[2, 2]);
         let dtype = Default::default();
-        let tensor = tf::tensor2d(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor2d(&values, shape, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -82,8 +77,7 @@ mod tensor {
         };
         let shape: Option<&[usize]> = Some(&[2, 2, 1]);
         let dtype = Default::default();
-        let tensor = tf::tensor3d(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor3d(&values, shape, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -98,8 +92,7 @@ mod tensor {
         };
         let shape: Option<&[usize]> = Some(&[1, 2, 2, 1]);
         let dtype = Default::default();
-        let tensor = tf::tensor4d(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor4d(&values, shape, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -118,8 +111,7 @@ mod tensor {
         };
         let shape: Option<&[usize]> = Some(&[1, 2, 2, 2, 1]);
         let dtype = Default::default();
-        let tensor = tf::tensor5d(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor5d(&values, shape, dtype);
     }
 
     #[wasm_bindgen_test]
@@ -138,8 +130,7 @@ mod tensor {
         };
         let shape: Option<&[usize]> = Some(&[1, 1, 2, 2, 2, 1]);
         let dtype = Default::default();
-        let tensor = tf::tensor6d(&values, shape, dtype);
-        tensor.print(false);
+        tf::tensor6d(&values, shape, dtype);
     }
 }
 
