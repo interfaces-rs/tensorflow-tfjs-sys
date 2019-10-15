@@ -161,7 +161,7 @@ extern {
     pub fn buffer(shape: &[i32], dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
 
     /// Creates a new tensor with the same values and shape as the specified tensor.
-    pub fn clone(x: &JsValue) -> Tensor;
+    pub fn clone(tensor: &Tensor) -> Tensor;
 
     /// Converts two real numbers to a complex number.
     pub fn complex(real: &JsValue, imag: &JsValue) -> Tensor;
