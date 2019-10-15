@@ -175,7 +175,7 @@ extern {
     ) -> Tensor;
 
     /// Creates a Tensor filled with a scalar value.
-    pub fn fill(shape: &[i32], value: &JsValue, dtype: Option<DType>) -> Tensor;
+    pub fn fill(shape: &[i32], value: i32, dtype: Option<DType>) -> Tensor;
 
     /// Returns the imaginary part of a complex (or real) tensor.
     pub fn imag(input: &JsValue) -> Tensor;
