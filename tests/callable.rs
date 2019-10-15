@@ -293,6 +293,14 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn as_type() {
+            let value: u32 = Default::default();
+            let dtype = Some("int32");
+            let tensor = tf::scalar(&value.into(), dtype);
+            tensor.as_type("float32");
+        }
+
+        #[wasm_bindgen_test]
         async fn array() {
             let tensor = helper::tensor();
             let promise = tensor.array();
