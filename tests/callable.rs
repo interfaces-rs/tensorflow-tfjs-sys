@@ -136,13 +136,12 @@ mod tensor {
 }
 
 mod tensor_buffer {
-    use js_sys::Array;
     use tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
     fn buffer() {
-        let shape = Array::new();
+        let shape = [];
         let dtype = Default::default();
         let values = Default::default();
         let buffer = tf::buffer(&shape, dtype, values);
@@ -151,12 +150,7 @@ mod tensor_buffer {
 
     #[wasm_bindgen_test]
     fn set() {
-        let shape = {
-            let res = Array::new();
-            res.push(&2.into());
-            res.push(&2.into());
-            res
-        };
+        let shape = [2, 2];
         let dtype = Default::default();
         let values = Default::default();
         let buffer = tf::buffer(&shape, dtype, values);

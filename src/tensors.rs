@@ -158,7 +158,7 @@ extern {
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates an empty TensorBuffer with the specified shape and dtype.
-    pub fn buffer(shape: &Array, dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
+    pub fn buffer(shape: &[usize], dtype: Option<DType>, values: Option<&Float32Array>) -> TensorBuffer;
 
     /// Creates a new tensor with the same values and shape as the specified tensor.
     pub fn clone(x: &JsValue) -> Tensor;
