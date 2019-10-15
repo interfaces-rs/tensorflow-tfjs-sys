@@ -20,19 +20,19 @@ extern {
 
     /// Converts a Tensor to a Tensor2D.
     #[wasm_bindgen(method, js_name = "as2D")]
-    pub fn as_2d(this: &Tensor) -> Tensor;
+    pub fn as_2d(this: &Tensor, rows: usize, columns: usize) -> Tensor;
 
     /// Converts a Tensor to a Tensor3D.
     #[wasm_bindgen(method, js_name = "as3D")]
-    pub fn as_3d(this: &Tensor) -> Tensor;
+    pub fn as_3d(this: &Tensor, rows: usize, columns: usize, depth: usize) -> Tensor;
 
     /// Converts a Tensor to a Tensor4D.
     #[wasm_bindgen(method, js_name = "as4D")]
-    pub fn as_4d(this: &Tensor) -> Tensor;
+    pub fn as_4d(this: &Tensor, rows: usize, columns: usize, depth: usize, depth2: usize) -> Tensor;
 
     /// Converts a Tensor to a Tensor5D.
     #[wasm_bindgen(method, js_name = "as5D")]
-    pub fn as_5d(this: &Tensor) -> Tensor;
+    pub fn as_5d(this: &Tensor, rows: usize, columns: usize, depth: usize, depth2: usize, depth3: usize) -> Tensor;
 
     /// Converts a size-1 Tensor to a Scalar.
     #[wasm_bindgen(method, js_name = "asScalar")]

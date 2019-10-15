@@ -5,13 +5,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn as_1d() {
-        let value = {
-            let res = Array::new();
-            res.push(&1.into());
-            res.push(&2.into());
-            res.push(&3.into());
-            res
-        };
+        let value = Array::new();
         let dtype = Default::default();
         let tensor = tf::tensor1d(&value.into(), dtype);
         tensor.as_1d();
