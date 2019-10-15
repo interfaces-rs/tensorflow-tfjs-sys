@@ -166,6 +166,14 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn linspace() {
+        let start = 0;
+        let stop = 9;
+        let num = 10;
+        tf::linspace(start, stop, num);
+    }
+
+    #[wasm_bindgen_test]
     fn print() {
         let value: u32 = Default::default();
         let dtype = Default::default();
