@@ -1,4 +1,5 @@
 mod tensor {
+    use js_sys::Array;
     use tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
@@ -30,7 +31,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn tensor() {
-        let values = js_sys::Array::new();
+        let values = Array::new();
         let shape = Default::default();
         let dtype = Default::default();
         let tensor = tf::tensor(&values, shape, dtype);
@@ -39,7 +40,7 @@ mod tensor {
 
     #[wasm_bindgen_test]
     fn tensor1d() {
-        let values = js_sys::Array::new();
+        let values = Array::new();
         let dtype = Default::default();
         let tensor = tf::tensor1d(&values, dtype);
         tensor.print(false);
@@ -48,7 +49,7 @@ mod tensor {
     #[wasm_bindgen_test]
     fn tensor2d() {
         let values = {
-            let res = js_sys::Array::new();
+            let res = Array::new();
             res.push(&1.into());
             res.push(&2.into());
             res.push(&3.into());
@@ -64,7 +65,7 @@ mod tensor {
     #[wasm_bindgen_test]
     fn tensor3d() {
         let values = {
-            let res = js_sys::Array::new();
+            let res = Array::new();
             res.push(&1.into());
             res.push(&2.into());
             res.push(&3.into());
@@ -80,7 +81,7 @@ mod tensor {
     #[wasm_bindgen_test]
     fn tensor4d() {
         let values = {
-            let res = js_sys::Array::new();
+            let res = Array::new();
             res.push(&1.into());
             res.push(&2.into());
             res.push(&3.into());
@@ -96,7 +97,7 @@ mod tensor {
     #[wasm_bindgen_test]
     fn tensor5d() {
         let values = {
-            let res = js_sys::Array::new();
+            let res = Array::new();
             res.push(&1.into());
             res.push(&2.into());
             res.push(&3.into());
@@ -116,7 +117,7 @@ mod tensor {
     #[wasm_bindgen_test]
     fn tensor6d() {
         let values = {
-            let res = js_sys::Array::new();
+            let res = Array::new();
             res.push(&1.into());
             res.push(&2.into());
             res.push(&3.into());
@@ -135,12 +136,13 @@ mod tensor {
 }
 
 mod tensor_buffer {
+    use js_sys::Array;
     use tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
     fn buffer() {
-        let shape = js_sys::Array::new();
+        let shape = Array::new();
         let dtype = Default::default();
         let values = Default::default();
         let buffer = tf::buffer(&shape, dtype, values);
@@ -149,7 +151,6 @@ mod tensor_buffer {
 
     #[wasm_bindgen_test]
     fn set() {
-        use js_sys::Array;
         let shape = {
             let res = Array::new();
             res.push(&2.into());
@@ -166,6 +167,7 @@ mod tensor_buffer {
 }
 
 mod variable {
+    use js_sys::Array;
     use tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
@@ -173,7 +175,7 @@ mod variable {
     fn assign() {
         let old = {
             let values = {
-                let res = js_sys::Array::new();
+                let res = Array::new();
                 res.push(&0u32.into());
                 res.push(&1u32.into());
                 res
@@ -184,7 +186,7 @@ mod variable {
         };
         let new = {
             let values = {
-                let res = js_sys::Array::new();
+                let res = Array::new();
                 res.push(&2u32.into());
                 res.push(&3u32.into());
                 res
