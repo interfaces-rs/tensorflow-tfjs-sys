@@ -158,6 +158,14 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn imag() {
+        let real = Default::default();
+        let imag = Default::default();
+        let complex = tf::complex(real, imag);
+        tf::imag(&complex);
+    }
+
+    #[wasm_bindgen_test]
     fn print() {
         let value: u32 = Default::default();
         let dtype = Default::default();
