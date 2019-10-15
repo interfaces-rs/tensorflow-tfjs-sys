@@ -181,7 +181,7 @@ extern {
     pub fn imag(input: &Tensor) -> Tensor;
 
     /// Return an evenly spaced sequence of numbers over the given interval.
-    pub fn linspace(start: &Number, stop: &Number, num: usize) -> Tensor;
+    pub fn linspace(start: i32, stop: i32, num: usize) -> Tensor;
 
     /// Creates a one-hot Tensor.
     #[wasm_bindgen(js_name = "oneHot")]
