@@ -36,6 +36,102 @@ mod tensor {
         let tensor = tf::tensor(&values, shape, dtype);
         tensor.print(false);
     }
+
+    #[wasm_bindgen_test]
+    fn tensor1d() {
+        let values = js_sys::Array::new();
+        let dtype = Default::default();
+        let tensor = tf::tensor1d(&values, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
+    fn tensor2d() {
+        let values = {
+            let res = js_sys::Array::new();
+            res.push(&1.into());
+            res.push(&2.into());
+            res.push(&3.into());
+            res.push(&4.into());
+            res
+        };
+        let shape: Option<&[usize]> = Some(&[2, 2]);
+        let dtype = Default::default();
+        let tensor = tf::tensor2d(&values, shape, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
+    fn tensor3d() {
+        let values = {
+            let res = js_sys::Array::new();
+            res.push(&1.into());
+            res.push(&2.into());
+            res.push(&3.into());
+            res.push(&4.into());
+            res
+        };
+        let shape: Option<&[usize]> = Some(&[2, 2, 1]);
+        let dtype = Default::default();
+        let tensor = tf::tensor3d(&values, shape, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
+    fn tensor4d() {
+        let values = {
+            let res = js_sys::Array::new();
+            res.push(&1.into());
+            res.push(&2.into());
+            res.push(&3.into());
+            res.push(&4.into());
+            res
+        };
+        let shape: Option<&[usize]> = Some(&[1, 2, 2, 1]);
+        let dtype = Default::default();
+        let tensor = tf::tensor4d(&values, shape, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
+    fn tensor5d() {
+        let values = {
+            let res = js_sys::Array::new();
+            res.push(&1.into());
+            res.push(&2.into());
+            res.push(&3.into());
+            res.push(&4.into());
+            res.push(&5.into());
+            res.push(&6.into());
+            res.push(&7.into());
+            res.push(&8.into());
+            res
+        };
+        let shape: Option<&[usize]> = Some(&[1, 2, 2, 2, 1]);
+        let dtype = Default::default();
+        let tensor = tf::tensor5d(&values, shape, dtype);
+        tensor.print(false);
+    }
+
+    #[wasm_bindgen_test]
+    fn tensor6d() {
+        let values = {
+            let res = js_sys::Array::new();
+            res.push(&1.into());
+            res.push(&2.into());
+            res.push(&3.into());
+            res.push(&4.into());
+            res.push(&5.into());
+            res.push(&6.into());
+            res.push(&7.into());
+            res.push(&8.into());
+            res
+        };
+        let shape: Option<&[usize]> = Some(&[1, 1, 2, 2, 2, 1]);
+        let dtype = Default::default();
+        let tensor = tf::tensor6d(&values, shape, dtype);
+        tensor.print(false);
+    }
 }
 
 mod tensor_buffer {
