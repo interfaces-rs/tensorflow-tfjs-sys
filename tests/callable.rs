@@ -115,6 +115,14 @@ mod tensor {
     }
 
     #[wasm_bindgen_test]
+    fn clone() {
+        let value = Array::new();
+        let dtype = Default::default();
+        let tensor = tf::tensor1d(&value.into(), dtype);
+        tf::clone(&tensor);
+    }
+
+    #[wasm_bindgen_test]
     fn eye() {
         let num_rows = Default::default();
         let num_columns = Default::default();
