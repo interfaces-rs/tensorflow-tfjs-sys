@@ -300,7 +300,7 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
-        async fn array_sync() {
+        fn array_sync() {
             let tensor = helper::tensor();
             tensor.array_sync();
         }
