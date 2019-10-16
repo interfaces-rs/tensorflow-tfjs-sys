@@ -172,6 +172,22 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn multinomial() {
+            let values = {
+                let res = Array::new();
+                res.push(&0.75.into());
+                res.push(&0.25.into());
+                res
+            };
+            let shape = Default::default();
+            let dtype = Default::default();
+            let probs = tf::tensor(&values, shape, dtype);
+            let seed = Default::default();
+            let normalized = Default::default();
+            tf::multinomial(&probs, 3, seed, normalized);
+        }
+
+        #[wasm_bindgen_test]
         fn one_hot() {
             let indices = {
                 let values = {
