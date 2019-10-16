@@ -189,6 +189,14 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn pad() {
+            let x = helper::tensor();
+            let padding = Array::new();
+            let constant_value = Default::default();
+            tf::pad(&x, &padding, constant_value);
+        }
+
+        #[wasm_bindgen_test]
         fn print() {
             let tensor = helper::tensor();
             let verbose = Default::default();
