@@ -210,6 +210,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn minimum() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::minimum(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn multinomial() {
             let values = {
                 let res = Array::new();

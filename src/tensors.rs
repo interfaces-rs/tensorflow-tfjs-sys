@@ -185,6 +185,9 @@ extern {
     /// Returns the max of a and b (a > b ? a : b) element-wise.
     pub fn maximum(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Returns the min of a and b (a < b ? a : b) element-wise.
+    pub fn minimum(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/
