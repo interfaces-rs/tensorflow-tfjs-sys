@@ -254,6 +254,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn reverse() {
+            let x = helper::tensor();
+            let axis = Default::default();
+            tf::reverse(&x, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn scalar() {
             let value: u32 = Default::default();
             let dtype = Default::default();
