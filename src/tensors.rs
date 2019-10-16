@@ -323,7 +323,7 @@ extern {
     /// Stacks a list of rank-R Tensors into one rank-(R+1) Tensor.
     pub fn stack(tensors: &Array, axis: usize) -> Tensor;
 
-    /// Concatenates a list of Tensors along a given axis.
+    /// Construct a tensor by repeating it the number of times given by reps.
     pub fn tile(x: &JsValue, reps: &[usize]) -> Tensor;
 
     /// Unstacks a Tensor of rank-R into a list of rank-(R-1) Tensors.
