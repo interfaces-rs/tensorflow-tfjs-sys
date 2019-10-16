@@ -221,6 +221,21 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn reshape() {
+            let values = {
+                let res = Array::new();
+                res.push(&1.into());
+                res.push(&2.into());
+                res.push(&3.into());
+                res.push(&4.into());
+                res
+            };
+            let dtype = Default::default();
+            let tensor = tf::tensor1d(&values, dtype);
+            tf::reshape(&tensor, &[2, 2]);
+        }
+
+        #[wasm_bindgen_test]
         fn scalar() {
             let value: u32 = Default::default();
             let dtype = Default::default();
