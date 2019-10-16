@@ -473,8 +473,7 @@ mod tensor_buffer {
         let shape = [];
         let dtype = Default::default();
         let values = Default::default();
-        let buffer = tf::buffer(&shape, dtype, values);
-        buffer.to_tensor().print(Some(false));
+        tf::buffer(&shape, dtype, values);
     }
 
     #[wasm_bindgen_test]
@@ -485,7 +484,6 @@ mod tensor_buffer {
         let buffer = tf::buffer(&shape, dtype, values);
         buffer.set(&3.into(), &[0, 0]);
         buffer.set(&5.into(), &[1, 0]);
-        buffer.to_tensor().print(Some(false));
     }
 }
 
