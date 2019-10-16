@@ -16,6 +16,42 @@ mod tensor {
         use tfjs_sys as tf;
         use wasm_bindgen_test::*;
 
+        // FIXME
+        // #[wasm_bindgen_test]
+        // fn batch_space_to_nd() {
+        //     let x = {
+        //         let values = {
+        //             let res = Array::new();
+        //             res.push(&1.into());
+        //             res.push(&2.into());
+        //             res.push(&3.into());
+        //             res.push(&4.into());
+        //             res
+        //         };
+        //         let shape: Option<&[i32]> = Some(&[4, 1, 1, 1]);
+        //         let dtype = Default::default();
+        //         tf::tensor4d(&values, shape, dtype)
+        //     };
+        //     let block_shape: &[usize] = &[2, 2];
+        //     let crops = {
+        //         let res = Array::new();
+        //         res.push(&{
+        //             let res = Array::new();
+        //             res.push(&0.into());
+        //             res.push(&0.into());
+        //             res.into()
+        //         });
+        //         res.push(&{
+        //             let res = Array::new();
+        //             res.push(&0.into());
+        //             res.push(&0.into());
+        //             res.into()
+        //         });
+        //         res
+        //     };
+        //     tf::batch_to_space_nd(&x, block_shape, &crops);
+        // }
+
         #[wasm_bindgen_test]
         fn buffer() {
             let shape: &[i32] = &[];
