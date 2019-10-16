@@ -85,6 +85,15 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn concat() {
+            let tensors = Array::new();
+            tensors.push(&helper::tensor());
+            tensors.push(&helper::tensor());
+            let axis = Default::default();
+            tf::concat(&tensors, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn depth_to_space_nd() {
             let x = {
                 let values = {
