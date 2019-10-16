@@ -279,7 +279,7 @@ extern {
     pub fn expand_dims(x: &JsValue, axis: Option<usize>) -> Tensor;
 
     /// Pads a Tensor with a given value and paddings.
-    pub fn pad(x: &JsValue, paddings: &Array, constant_value: &Number) -> Tensor;
+    pub fn pad(x: &Tensor, paddings: &Array, constant_value: f32) -> Tensor;
 
     /// Reshapes a Tensor to a given shape.
     pub fn reshape(x: &JsValue, shape: &[i32]) -> Tensor;
