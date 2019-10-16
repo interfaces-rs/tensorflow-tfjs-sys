@@ -236,6 +236,26 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn random_normal() {
+            let shape: &[i32] = &[2, 2];
+            let mean = Default::default();
+            let std_dev = Default::default();
+            let dtype = Default::default();
+            let seed = Default::default();
+            tf::random_normal(shape, mean, std_dev, dtype, seed);
+        }
+
+        #[wasm_bindgen_test]
+        fn random_uniform() {
+            let shape: &[i32] = &[2, 2];
+            let minval = Default::default();
+            let maxval = Default::default();
+            let dtype = Default::default();
+            let seed = Default::default();
+            tf::random_normal(shape, minval, maxval, dtype, seed);
+        }
+
+        #[wasm_bindgen_test]
         fn range() {
             let start = 0;
             let stop = 9;
