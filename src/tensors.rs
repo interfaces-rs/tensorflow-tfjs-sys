@@ -168,6 +168,9 @@ extern {
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
+    /// Adds two tf.Tensors element-wise, A + B.
+    pub fn add(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
     /// Adds a list of tf.Tensors element-wise, each with the same shape and dtype.
     #[wasm_bindgen(js_name = "addN")]
     pub fn add_n(tensors: &Array) -> Tensor;

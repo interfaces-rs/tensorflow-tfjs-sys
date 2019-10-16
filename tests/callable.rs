@@ -18,6 +18,13 @@ mod tensor {
         use wasm_bindgen_test::*;
 
         #[wasm_bindgen_test]
+        fn add() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::add(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn add_n() {
             let tensors = {
                 let res = Array::new();
