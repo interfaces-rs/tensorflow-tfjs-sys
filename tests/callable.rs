@@ -281,6 +281,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn pow() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::pow(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn print() {
             let tensor = helper::tensor();
             let verbose = Default::default();

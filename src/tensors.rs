@@ -191,6 +191,9 @@ extern {
     /// Multiplies two tf.Tensors element-wise, A * B.
     pub fn mul(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Computes the power of one tf.Tensor to another.
+    pub fn pow(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/
