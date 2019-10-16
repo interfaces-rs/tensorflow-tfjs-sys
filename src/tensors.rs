@@ -194,6 +194,10 @@ extern {
     /// Computes the power of one tf.Tensor to another.
     pub fn pow(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Returns the mod of a and b element-wise. floor(x / y) * y + mod(x, y) = x.
+    #[wasm_bindgen(js_name = "mod")]
+    pub fn modulus(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/

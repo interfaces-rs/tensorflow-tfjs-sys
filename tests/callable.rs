@@ -295,6 +295,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn modulus() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::modulus(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn random_normal() {
             let shape: &[i32] = &[2, 2];
             let mean = Default::default();
