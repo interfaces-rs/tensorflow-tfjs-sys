@@ -14,6 +14,8 @@ extern {
     /// shape and a data type.
     pub type Tensor;
 
+    pub fn abs(this: &Tensor) -> Tensor;
+
     /// Converts a Tensor to a Tensor1D.
     #[wasm_bindgen(method, js_name = "as1D")]
     pub fn as_1d(this: &Tensor) -> Tensor;

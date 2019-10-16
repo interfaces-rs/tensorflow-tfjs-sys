@@ -492,6 +492,12 @@ mod tensor {
         use wasm_bindgen_test::*;
 
         #[wasm_bindgen_test]
+        fn abs() {
+            let this = helper::tensor();
+            this.abs();
+        }
+
+        #[wasm_bindgen_test]
         fn as_1d() {
             let value = Array::new();
             let dtype = Default::default();
