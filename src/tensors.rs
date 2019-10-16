@@ -335,7 +335,7 @@ extern {
 extern {
     /// Creates a Tensor with values drawn from a multinomial distribution.
     // FIXME: seed type?
-    pub fn multinomial(logits: &JsValue, num_samples: usize, seed: Option<usize>, normalized: Option<bool>) -> Tensor;
+    pub fn multinomial(logits: &Tensor, num_samples: usize, seed: Option<usize>, normalized: Option<bool>) -> Tensor;
 
     /// Creates a Tensor with values sampled from a normal distribution.
     // FIXME: seed type?
