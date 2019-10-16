@@ -182,6 +182,9 @@ extern {
     #[wasm_bindgen(js_name = "floorDiv")]
     pub fn floor_div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Returns the max of a and b (a > b ? a : b) element-wise.
+    pub fn maximum(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/

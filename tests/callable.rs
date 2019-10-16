@@ -203,6 +203,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn maximum() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::maximum(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn multinomial() {
             let values = {
                 let res = Array::new();
