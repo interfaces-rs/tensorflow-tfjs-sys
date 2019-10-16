@@ -14,6 +14,7 @@ mod tensor {
         use super::super::helper;
         use js_sys::Array;
         use tfjs_sys as tf;
+        use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
 
         // FIXME
@@ -240,6 +241,14 @@ mod tensor {
             let value: u32 = Default::default();
             let dtype = Default::default();
             tf::scalar(&value.into(), dtype);
+        }
+
+        #[wasm_bindgen_test]
+        async fn set_diff_1d_async() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            let promise = tf::set_diff_1d_async(&lhs, &rhs);
+            JsFuture::from(promise).await.unwrap();
         }
 
         #[wasm_bindgen_test]
