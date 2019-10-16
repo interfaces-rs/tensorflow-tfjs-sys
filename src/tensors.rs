@@ -161,7 +161,10 @@ extern {
     pub fn assign(this: &Variable, value: &Tensor);
 }
 
-// Creation functions
+/**********************/
+/* Creation Functions */
+/**********************/
+
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates an empty TensorBuffer with the specified shape and dtype.
@@ -260,7 +263,10 @@ extern {
     pub fn zeros_like(input: &Tensor) -> Tensor;
 }
 
-// Transformations
+/****************************/
+/* Transformation Functions */
+/****************************/
+
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// This operation reshapes the "batch" dimension 0 into M + 1 dimensions of shape blockShape +
@@ -333,7 +339,10 @@ extern {
     pub fn unstack(x: &Tensor, axis: Option<usize>) -> Array;
 }
 
-// Random
+/********************/
+/* Random Functions */
+/********************/
+
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates a Tensor with values drawn from a multinomial distribution.
