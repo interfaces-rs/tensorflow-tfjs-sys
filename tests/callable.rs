@@ -84,6 +84,26 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn depth_to_space_nd() {
+            let x = {
+                let values = {
+                    let res = Array::new();
+                    res.push(&1.into());
+                    res.push(&2.into());
+                    res.push(&3.into());
+                    res.push(&4.into());
+                    res
+                };
+                let shape: Option<&[i32]> = Some(&[1, 1, 1, 4]);
+                let dtype = Default::default();
+                tf::tensor4d(&values, shape, dtype)
+            };
+            let block_size = 2;
+            let data_format = Default::default();
+            tf::depth_to_space(&x, block_size, data_format);
+        }
+
+        #[wasm_bindgen_test]
         fn eye() {
             let num_rows = Default::default();
             let num_columns = Default::default();
