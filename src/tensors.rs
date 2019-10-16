@@ -178,6 +178,10 @@ extern {
     /// Divides two tf.Tensors element-wise, A / B.
     pub fn div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Divides two tf.Tensors element-wise, A / B. Supports broadcasting.
+    #[wasm_bindgen(js_name = "floorDiv")]
+    pub fn floor_div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/

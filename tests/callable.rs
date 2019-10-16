@@ -172,6 +172,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn floor_div() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::floor_div(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn gather() {
             let x = helper::tensor();
             let indices = helper::tensor().to_int();
