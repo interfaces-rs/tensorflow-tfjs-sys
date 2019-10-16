@@ -25,6 +25,14 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn cast() {
+            let value = Array::new();
+            let dtype = "float32";
+            let tensor = tf::tensor1d(&value.into(), Some(dtype));
+            tf::cast(&tensor, dtype);
+        }
+
+        #[wasm_bindgen_test]
         fn clone() {
             let value = Array::new();
             let dtype = Default::default();
