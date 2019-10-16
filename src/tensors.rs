@@ -309,7 +309,7 @@ extern {
     pub fn concat(tensors: &Array, axis: Option<usize>) -> Tensor;
 
     /// Gather slices from tensor x's axis axis according to indices.
-    pub fn gather(x: &JsValue, indices: &JsValue, axis: Option<usize>) -> Tensor;
+    pub fn gather(x: &Tensor, indices: &Tensor, axis: Option<usize>) -> Tensor;
 
     /// Reverses a Tensor along a specified axis.
     pub fn reverse(x: &JsValue, axis: Option<usize>) -> Tensor;
