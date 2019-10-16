@@ -14,6 +14,7 @@ extern {
     /// shape and a data type.
     pub type Tensor;
 
+    /// Computes absolute value element-wise: abs(x).
     pub fn abs(this: &Tensor) -> Tensor;
 
     /// Converts a Tensor to a Tensor1D.
