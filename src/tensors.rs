@@ -198,6 +198,10 @@ extern {
     #[wasm_bindgen(js_name = "mod")]
     pub fn modulus(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Returns (a - b) * (a - b) element-wise.
+    #[wasm_bindgen(js_name = "squaredDifference")]
+    pub fn squared_difference(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/

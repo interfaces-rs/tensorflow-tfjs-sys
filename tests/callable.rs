@@ -376,6 +376,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn squared_difference() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::squared_difference(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn squeeze() {
             let values = {
                 let res = Array::new();
