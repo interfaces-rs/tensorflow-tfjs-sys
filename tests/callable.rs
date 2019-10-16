@@ -333,6 +333,15 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn cumsum() {
+            let tensor = helper::tensor();
+            let axis = Default::default();
+            let exclusive = Default::default();
+            let reverse = Default::default();
+            tensor.cumsum(axis, exclusive, reverse);
+        }
+
+        #[wasm_bindgen_test]
         fn print() {
             let value: u32 = Default::default();
             let dtype = Default::default();
