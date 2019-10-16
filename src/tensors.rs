@@ -17,6 +17,15 @@ extern {
     /// Computes absolute value element-wise: abs(x).
     pub fn abs(this: &Tensor) -> Tensor;
 
+    /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
+    #[wasm_bindgen(method)]
+    #[must_use]
+    pub fn array(this: &Tensor) -> Promise;
+
+    /// Returns the tensor data as a nested array. The transfer of data is done synchronously.
+    #[wasm_bindgen(method, js_name = "arraySync")]
+    pub fn array_sync(this: &Tensor) -> Box<[JsValue]>;
+
     /// Converts a Tensor to a Tensor1D.
     #[wasm_bindgen(method, js_name = "as1D")]
     pub fn as_1d(this: &Tensor) -> Tensor;
@@ -44,15 +53,6 @@ extern {
     /// Casts a Tensor to a specified dtype.
     #[wasm_bindgen(method, js_name = "asType")]
     pub fn as_type(this: &Tensor, dtype: DType) -> Tensor;
-
-    /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
-    #[wasm_bindgen(method)]
-    #[must_use]
-    pub fn array(this: &Tensor) -> Promise;
-
-    /// Returns the tensor data as a nested array. The transfer of data is done synchronously.
-    #[wasm_bindgen(method, js_name = "arraySync")]
-    pub fn array_sync(this: &Tensor) -> Box<[JsValue]>;
 
     /// Returns a promise of TensorBuffer that holds the underlying data.
     #[wasm_bindgen(method)]
