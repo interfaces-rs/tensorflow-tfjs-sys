@@ -217,6 +217,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn mul() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::mul(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn multinomial() {
             let values = {
                 let res = Array::new();

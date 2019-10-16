@@ -188,6 +188,9 @@ extern {
     /// Returns the min of a and b (a < b ? a : b) element-wise.
     pub fn minimum(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Multiplies two tf.Tensors element-wise, A * B.
+    pub fn mul(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/
