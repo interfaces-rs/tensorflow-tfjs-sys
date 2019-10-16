@@ -409,6 +409,23 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn unstack() {
+            let values = {
+                let res = Array::new();
+                res.push(&1.into());
+                res.push(&2.into());
+                res.push(&3.into());
+                res.push(&4.into());
+                res
+            };
+            let shape: Option<&[i32]> = Some(&[2, 2]);
+            let dtype = Default::default();
+            let x = tf::tensor2d(&values, shape, dtype);
+            let axis = Default::default();
+            tf::unstack(&x, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn variable() {
             let value = Array::new();
             let dtype = Default::default();
