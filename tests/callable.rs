@@ -327,6 +327,12 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn clone() {
+            let tensor = helper::tensor();
+            tensor.clone();
+        }
+
+        #[wasm_bindgen_test]
         fn print() {
             let value: u32 = Default::default();
             let dtype = Default::default();
