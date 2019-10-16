@@ -161,6 +161,17 @@ extern {
     pub fn assign(this: &Variable, value: &Tensor);
 }
 
+/*************************/
+/* Arithmetic Operations */
+/*************************/
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Adds a list of tf.Tensors element-wise, each with the same shape and dtype.
+    #[wasm_bindgen(js_name = "addN")]
+    pub fn add_n(tensors: &Array) -> Tensor;
+}
+
 /**********************/
 /* Creation Functions */
 /**********************/
