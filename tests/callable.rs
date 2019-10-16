@@ -17,6 +17,16 @@ mod tensor {
         use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
 
+        #[wasm_bindgen_test]
+        fn add_n() {
+            let tensors = {
+                let res = Array::new();
+                res.push(&helper::tensor());
+                res
+            };
+            tf::add_n(&tensors);
+        }
+
         // FIXME
         // #[wasm_bindgen_test]
         // fn batch_space_to_nd() {
