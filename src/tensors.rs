@@ -339,6 +339,7 @@ extern {
 
     /// Creates a Tensor with values sampled from a normal distribution.
     // FIXME: seed type?
+    #[wasm_bindgen(js_name = "randomNormal")]
     pub fn random_normal(
         shape: &[i32],
         mean: Option<&Number>,
@@ -348,6 +349,7 @@ extern {
     ) -> Tensor;
 
     /// Creates a Tensor with values sampled from a uniform distribution.
+    #[wasm_bindgen(js_name = "randomUniform")]
     pub fn random_uniform(
         shape: &[i32],
         minval: Option<&Number>,
