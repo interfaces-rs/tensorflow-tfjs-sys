@@ -145,6 +145,23 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn squeeze() {
+            let values = {
+                let res = Array::new();
+                res.push(&1.into());
+                res.push(&2.into());
+                res.push(&3.into());
+                res.push(&4.into());
+                res
+            };
+            let shape: Option<&[i32]> = Some(&[1, 1, 4]);
+            let dtype = Default::default();
+            let tensor = tf::tensor(&values, shape, dtype);
+            let axis = Default::default();
+            tf::squeeze(&tensor, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn tensor() {
             let values = Array::new();
             let shape = Default::default();
@@ -431,14 +448,14 @@ mod tensor {
 
         #[wasm_bindgen_test]
         fn squeeze() {
-                let values = {
-                    let res = Array::new();
-                    res.push(&1.into());
-                    res.push(&2.into());
-                    res.push(&3.into());
-                    res.push(&4.into());
-                    res
-                };
+            let values = {
+                let res = Array::new();
+                res.push(&1.into());
+                res.push(&2.into());
+                res.push(&3.into());
+                res.push(&4.into());
+                res
+            };
             let shape: Option<&[i32]> = Some(&[1, 1, 4]);
             let dtype = Default::default();
             let tensor = tf::tensor(&values, shape, dtype);
