@@ -366,6 +366,13 @@ mod tensor {
             let axis = Default::default();
             tensor.expand_dims(axis);
         }
+
+        #[wasm_bindgen_test]
+        fn flatten() {
+            let tensor = helper::tensor();
+            tensor.flatten();
+        }
+
         #[wasm_bindgen_test]
         fn print() {
             let value: u32 = Default::default();
