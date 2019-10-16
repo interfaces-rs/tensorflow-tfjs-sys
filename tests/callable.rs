@@ -380,6 +380,46 @@ mod tensor {
             let tensor = tf::scalar(&value.into(), dtype);
             tensor.print(Some(false));
         }
+
+        #[wasm_bindgen_test]
+        fn reshape() {
+            let values = {
+                let res = Array::new();
+                res.push(&1.into());
+                res.push(&2.into());
+                res.push(&3.into());
+                res.push(&4.into());
+                res
+            };
+            let dtype = Default::default();
+            let tensor = tf::tensor1d(&values, dtype);
+            tensor.reshape(&[2, 2]);
+        }
+
+        #[wasm_bindgen_test]
+        fn reshape_as() {
+            let this = {
+                let values = {
+                    let res = Array::new();
+                    res.push(&1.into());
+                    res.push(&2.into());
+                    res
+                };
+                let dtype = Default::default();
+                tf::tensor1d(&values, dtype)
+            };
+            let that = {
+                let values = {
+                    let res = Array::new();
+                    res.push(&2.into());
+                    res.push(&2.into());
+                    res
+                };
+                let dtype = Default::default();
+                tf::tensor1d(&values, dtype)
+            };
+            this.reshape_as(&that);
+        }
     }
 }
 
