@@ -202,6 +202,8 @@ extern {
     #[wasm_bindgen(js_name = "squaredDifference")]
     pub fn squared_difference(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
+    /// Subtracts two tf.Tensors element-wise, A - B.
+    pub fn sub(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 }
 
 /**********************/

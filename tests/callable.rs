@@ -408,6 +408,13 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn sub() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::sub(&lhs, &rhs);
+        }
+
+        #[wasm_bindgen_test]
         fn tensor() {
             let values = Array::new();
             let shape = Default::default();
