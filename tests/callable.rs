@@ -293,6 +293,14 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn stack() {
+            let tensors = Array::new();
+            tensors.push(&helper::tensor());
+            let axis = Default::default();
+            tf::stack(&tensors, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn tensor() {
             let values = Array::new();
             let shape = Default::default();
