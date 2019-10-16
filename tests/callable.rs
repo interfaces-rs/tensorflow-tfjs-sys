@@ -11,8 +11,8 @@ mod helper {
 
 mod tensor {
     mod functions {
-        use js_sys::Array;
         use super::super::helper;
+        use js_sys::Array;
         use tfjs_sys as tf;
         use wasm_bindgen_test::*;
 
@@ -270,8 +270,8 @@ mod tensor {
     }
 
     mod methods {
-        use js_sys::Array;
         use super::super::helper;
+        use js_sys::Array;
         use tfjs_sys as tf;
         use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
