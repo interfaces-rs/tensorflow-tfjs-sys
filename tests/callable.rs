@@ -150,6 +150,14 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        fn gather() {
+            let x = helper::tensor();
+            let indices = helper::tensor().to_int();
+            let axis = Default::default();
+            tf::gather(&x, &indices, axis);
+        }
+
+        #[wasm_bindgen_test]
         fn imag() {
             let real = Default::default();
             let imag = Default::default();
