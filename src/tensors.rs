@@ -268,7 +268,7 @@ extern {
     pub fn batch_to_space_nd(x: &JsValue, block_shape: &[usize], crops: &Array) -> Tensor;
 
     /// Casts a Tensor to a new dtype.
-    pub fn cast(x: &JsValue, dtype: DType) -> Tensor;
+    pub fn cast(x: &Tensor, dtype: DType) -> Tensor;
 
     /// Rearranges data from depth into blocks of spatial data.
     #[wasm_bindgen(js_name = "depthToSpace")]
