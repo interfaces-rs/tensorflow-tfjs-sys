@@ -15,6 +15,7 @@ extern {
     pub type Tensor;
 
     /// Computes absolute value element-wise: abs(x).
+    #[wasm_bindgen(method)]
     pub fn abs(this: &Tensor) -> Tensor;
 
     /// Returns the tensor data as a nested array. The transfer of data is done asynchronously.
