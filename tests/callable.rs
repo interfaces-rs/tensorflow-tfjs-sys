@@ -318,7 +318,7 @@ mod tensor {
             let value: u32 = Default::default();
             let dtype = Default::default();
             let tensor = tf::scalar(&value.into(), dtype);
-            tensor.print(false);
+            tensor.print(Some(false));
         }
     }
 }
@@ -333,7 +333,7 @@ mod tensor_buffer {
         let dtype = Default::default();
         let values = Default::default();
         let buffer = tf::buffer(&shape, dtype, values);
-        buffer.to_tensor().print(false);
+        buffer.to_tensor().print(Some(false));
     }
 
     #[wasm_bindgen_test]
@@ -344,7 +344,7 @@ mod tensor_buffer {
         let buffer = tf::buffer(&shape, dtype, values);
         buffer.set(&3.into(), &[0, 0]);
         buffer.set(&5.into(), &[1, 0]);
-        buffer.to_tensor().print(false);
+        buffer.to_tensor().print(Some(false));
     }
 }
 

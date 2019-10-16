@@ -53,25 +53,25 @@ extern {
 
     /// Returns a promise of TensorBuffer that holds the underlying data.
     #[wasm_bindgen(method)]
-    pub fn buffer(this: &Tensor);
+    pub fn buffer(this: &Tensor) -> Promise;
 
     /// Returns a TensorBuffer that holds the underlying data.
     #[wasm_bindgen(method, js_name = "bufferSync")]
-    pub fn buffer_sync(this: &Tensor);
+    pub fn buffer_sync(this: &Tensor) -> TensorBuffer;
 
     /// Returns a copy of the tensor. See clone() for details.
     #[wasm_bindgen(method)]
-    pub fn clone(this: &Tensor);
+    pub fn clone(this: &Tensor) -> Tensor;
 
     /// Asynchronously downloads the values from the Tensor. Returns a promise of TypedArray
     /// that resolves when the computation has finished.
     #[wasm_bindgen(method)]
-    pub fn data(this: &Tensor);
+    pub fn data(this: &Tensor) -> Promise;
 
     /// Synchronously downloads the values from the Tensor. This blocks the UI thread until the
     /// values are ready, which can cause performance issues.
     #[wasm_bindgen(method, js_name = "dataSync")]
-    pub fn data_sync(this: &Tensor);
+    pub fn data_sync(this: &Tensor) -> JsValue;
 
     /// Disposes Tensor from memory.
     #[wasm_bindgen(method)]
@@ -80,44 +80,44 @@ extern {
     /// Returns a Tensor that has expanded rank, by inserting a dimension into the tensor's
     /// shape. See expandDims() for details.
     #[wasm_bindgen(method, js_name = "expandDims")]
-    pub fn expand_dims(this: &Tensor);
+    pub fn expand_dims(this: &Tensor, axis: Option<usize>) -> Tensor;
 
     /// Returns the cumulative sum of the Tensor along axis.
     #[wasm_bindgen(method)]
-    pub fn cumsum(this: &Tensor);
+    pub fn cumsum(this: &Tensor, axis: Option<usize>, exclusive: Option<bool>, reverse: Option<bool>) -> Tensor;
 
     /// Flatten a Tensor to a 1D array.
     #[wasm_bindgen(method)]
-    pub fn flatten(this: &Tensor);
+    pub fn flatten(this: &Tensor) -> Tensor;
 
     /// Prints information about the Tensor including its data.
     #[wasm_bindgen(method)]
-    pub fn print(this: &Tensor, verbose: bool);
+    pub fn print(this: &Tensor, verbose: Option<bool>);
 
     /// Reshapes the tensor into the provided shape. See reshape() for more details.
     #[wasm_bindgen(method)]
-    pub fn reshape(this: &Tensor);
+    pub fn reshape(this: &Tensor, shape: &[i32]) -> Tensor;
 
     /// Reshapes the tensor into the shape of the provided tensor.
     #[wasm_bindgen(method, js_name = "reshapeAs")]
-    pub fn reshape_as(this: &Tensor);
+    pub fn reshape_as(this: &Tensor, that: &Tensor) -> Tensor;
 
     /// Returns a Tensor with dimensions of size 1 removed from the shape. See squeeze() for
     /// more details.
     #[wasm_bindgen(method)]
-    pub fn squeeze(this: &Tensor);
+    pub fn squeeze(this: &Tensor, axis: Option<&[usize]>) -> Tensor;
 
     /// Casts the array to type bool
     #[wasm_bindgen(method, js_name = "toBool")]
-    pub fn to_bool(this: &Tensor);
+    pub fn to_bool(this: &Tensor) -> Tensor;
 
     /// Casts the array to type float32
     #[wasm_bindgen(method, js_name = "toFloat")]
-    pub fn to_float(this: &Tensor);
+    pub fn to_float(this: &Tensor) -> Tensor;
 
     /// Casts the array to type int32
     #[wasm_bindgen(method, js_name = "toInt")]
-    pub fn to_int(this: &Tensor);
+    pub fn to_int(this: &Tensor) -> Tensor;
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
