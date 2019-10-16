@@ -128,6 +128,13 @@ mod tensor {
             tf::depth_to_space(&x, block_size, data_format);
         }
 
+        #[wasm_bindgen_test]
+        fn div() {
+            let lhs = helper::tensor();
+            let rhs = helper::tensor();
+            tf::div(&lhs, &rhs);
+        }
+
         // FIXME
         // #[wasm_bindgen_test]
         // fn expand_dims() {

@@ -174,6 +174,10 @@ extern {
     /// Adds a list of tf.Tensors element-wise, each with the same shape and dtype.
     #[wasm_bindgen(js_name = "addN")]
     pub fn add_n(tensors: &Array) -> Tensor;
+
+    /// Divides two tf.Tensors element-wise, A / B.
+    pub fn div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
+
 }
 
 /**********************/
