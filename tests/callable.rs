@@ -437,6 +437,30 @@ mod tensor {
             let axis = Default::default();
             tensor.squeeze(axis);
         }
+
+        #[wasm_bindgen_test]
+        fn to_bool() {
+            let tensor = helper::tensor();
+            tensor.to_bool();
+        }
+
+        #[wasm_bindgen_test]
+        fn to_float() {
+            let tensor = helper::tensor();
+            tensor.to_float();
+        }
+
+        #[wasm_bindgen_test]
+        fn to_int() {
+            let tensor = helper::tensor();
+            tensor.to_int();
+        }
+
+        #[wasm_bindgen_test]
+        fn to_string() {
+            let tensor = helper::tensor();
+            tensor.to_string();
+        }
     }
 }
 
