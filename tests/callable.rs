@@ -477,6 +477,15 @@ mod tensor_buffer {
     }
 
     #[wasm_bindgen_test]
+    fn get() {
+        let shape = [2, 2];
+        let dtype = Default::default();
+        let values = Default::default();
+        let buffer = tf::buffer(&shape, dtype, values);
+        buffer.get(&[0, 0]);
+    }
+
+    #[wasm_bindgen_test]
     fn set() {
         let shape = [2, 2];
         let dtype = Default::default();
