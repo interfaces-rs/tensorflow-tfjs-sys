@@ -103,6 +103,25 @@ mod tensor {
             tf::depth_to_space(&x, block_size, data_format);
         }
 
+        // FIXME
+        // #[wasm_bindgen_test]
+        // fn expand_dims() {
+        //     let x = {
+        //         let values = {
+        //             let res = Array::new();
+        //             res.push(&1.into());
+        //             res.push(&2.into());
+        //             res.push(&3.into());
+        //             res.push(&4.into());
+        //             res
+        //         };
+        //         let dtype = Default::default();
+        //         tf::tensor1d(&values, dtype)
+        //     };
+        //     let axis = Some(1);
+        //     tf::expand_dims(&x, axis);
+        // }
+
         #[wasm_bindgen_test]
         fn eye() {
             let num_rows = Default::default();
