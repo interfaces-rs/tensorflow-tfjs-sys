@@ -314,6 +314,19 @@ mod tensor {
         }
 
         #[wasm_bindgen_test]
+        async fn buffer() {
+            let tensor = helper::tensor();
+            let promise = tensor.buffer();
+            JsFuture::from(promise).await.unwrap();
+        }
+
+        #[wasm_bindgen_test]
+        fn buffer_sync() {
+            let tensor = helper::tensor();
+            tensor.buffer_sync();
+        }
+
+        #[wasm_bindgen_test]
         fn print() {
             let value: u32 = Default::default();
             let dtype = Default::default();
