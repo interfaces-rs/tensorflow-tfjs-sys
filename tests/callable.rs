@@ -494,6 +494,15 @@ mod tensor_buffer {
         buffer.set(&3.into(), &[0, 0]);
         buffer.set(&5.into(), &[1, 0]);
     }
+
+    #[wasm_bindgen_test]
+    fn to_tensor() {
+        let shape = [];
+        let dtype = Default::default();
+        let values = Default::default();
+        let buffer = tf::buffer(&shape, dtype, values);
+        buffer.to_tensor();
+    }
 }
 
 mod variable {
