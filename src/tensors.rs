@@ -208,7 +208,7 @@ extern {
     pub fn real(input: &Tensor) -> Tensor;
 
     /// Creates rank-0 Tensor (scalar) with the provided value and dtype.
-    pub fn scalar(value: &JsValue, dtype: Option<DType>) -> Tensor;
+    pub fn scalar(value: f32, dtype: Option<DType>) -> Tensor;
 
     /// Creates a Tensor with the provided values, shape and dtype.
     pub fn tensor(values: &Array, shape: Option<&[i32]>, dtype: Option<DType>) -> Tensor;
@@ -235,10 +235,10 @@ extern {
     #[wasm_bindgen(js_name = "truncatedNormal")]
     pub fn truncated_normal(
         shape: &[i32],
-        mean: Option<&Number>,
-        std_dev: Option<&Number>,
+        mean: Option<f32>,
+        std_dev: Option<f32>,
         dtype: Option<DType>,
-        seed: Option<&Number>,
+        seed: Option<f32>,
     ) -> Tensor;
 
     /// Creates a new variable with the provided initial value.
@@ -265,24 +265,24 @@ extern {
     /// ..., M], to obtain a result with the same rank as the input.
     // FIXME: crops type
     #[wasm_bindgen(js_name = "batchToSpaceND")]
-    pub fn batch_to_space_nd(x: &JsValue, block_shape: &[usize], crops: &Array) -> Tensor;
+    pub fn batch_to_space_nd(x: &Tensor, block_shape: &[usize], crops: &Array) -> Tensor;
 
     /// Casts a Tensor to a new dtype.
     pub fn cast(x: &Tensor, dtype: DType) -> Tensor;
 
     /// Rearranges data from depth into blocks of spatial data.
     #[wasm_bindgen(js_name = "depthToSpace")]
-    pub fn depth_to_space(x: &JsValue, block_size: usize, data_format: Option<&str>) -> Tensor;
+    pub fn depth_to_space(x: &Tensor, block_size: usize, data_format: Option<&str>) -> Tensor;
 
     /// Returns a Tensor that has expanded rank, by inserting a dimension into the tensor's shape.
     #[wasm_bindgen(js_name = "depthToSpace")]
-    pub fn expand_dims(x: &JsValue, axis: Option<usize>) -> Tensor;
+    pub fn expand_dims(x: &Tensor, axis: Option<usize>) -> Tensor;
 
     /// Pads a Tensor with a given value and paddings.
     pub fn pad(x: &Tensor, paddings: &Array, constant_value: f32) -> Tensor;
 
     /// Reshapes a Tensor to a given shape.
-    pub fn reshape(x: &JsValue, shape: &[i32]) -> Tensor;
+    pub fn reshape(x: &Tensor, shape: &[i32]) -> Tensor;
 
     /// Computes the difference between two lists of numbers.
     #[wasm_bindgen(js_name = "setdiff1dAsync")]
@@ -296,10 +296,10 @@ extern {
     /// original batch position. Prior to division into blocks, the spatial dimensions of the input
     /// are optionally zero padded according to paddings.
     #[wasm_bindgen(js_name = "spaceToBatchND")]
-    pub fn space_to_batch_nd(x: &JsValue, shape: &[i32], paddings: &Array) -> Tensor;
+    pub fn space_to_batch_nd(x: &Tensor, shape: &[i32], paddings: &Array) -> Tensor;
 
     /// Removes dimensions of size 1 from the shape of a Tensor.
-    pub fn squeeze(x: &JsValue, axis: &[usize]) -> Tensor;
+    pub fn squeeze(x: &Tensor, axis: &[usize]) -> Tensor;
 }
 
 // Slicing and Joining
@@ -312,22 +312,22 @@ extern {
     pub fn gather(x: &Tensor, indices: &Tensor, axis: Option<usize>) -> Tensor;
 
     /// Reverses a Tensor along a specified axis.
-    pub fn reverse(x: &JsValue, axis: Option<usize>) -> Tensor;
+    pub fn reverse(x: &Tensor, axis: Option<usize>) -> Tensor;
 
     /// Extracts a slice from a Tensor starting at coordinates begin and is of size size.
-    pub fn slice(x: &JsValue, begin: &JsValue, end: &JsValue) -> Tensor;
+    pub fn slice(x: &Tensor, begin: &JsValue, end: &JsValue) -> Tensor;
 
     /// Splits a Tensor into sub tensors.
-    pub fn split(x: &JsValue, num_or_size_splits: &JsValue, axis: Option<usize>) -> Array;
+    pub fn split(x: &Tensor, num_or_size_splits: &JsValue, axis: Option<usize>) -> Array;
 
     /// Stacks a list of rank-R Tensors into one rank-(R+1) Tensor.
     pub fn stack(tensors: &Array, axis: usize) -> Tensor;
 
     /// Construct a tensor by repeating it the number of times given by reps.
-    pub fn tile(x: &JsValue, reps: &[usize]) -> Tensor;
+    pub fn tile(x: &Tensor, reps: &[usize]) -> Tensor;
 
     /// Unstacks a Tensor of rank-R into a list of rank-(R-1) Tensors.
-    pub fn unstack(x: &JsValue, axis: Option<usize>) -> Array;
+    pub fn unstack(x: &Tensor, axis: Option<usize>) -> Array;
 }
 
 // Random

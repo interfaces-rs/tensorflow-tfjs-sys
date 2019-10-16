@@ -262,9 +262,9 @@ mod tensor {
 
         #[wasm_bindgen_test]
         fn scalar() {
-            let value: u32 = Default::default();
+            let value = Default::default();
             let dtype = Default::default();
-            tf::scalar(&value.into(), dtype);
+            tf::scalar(value, dtype);
         }
 
         #[wasm_bindgen_test]
@@ -450,17 +450,17 @@ mod tensor {
 
         #[wasm_bindgen_test]
         fn as_scalar() {
-            let value: u32 = Default::default();
+            let value = Default::default();
             let dtype = Default::default();
-            let tensor = tf::scalar(&value.into(), dtype);
+            let tensor = tf::scalar(value, dtype);
             tensor.as_scalar();
         }
 
         #[wasm_bindgen_test]
         fn as_type() {
-            let value: u32 = Default::default();
+            let value = Default::default();
             let dtype = Some("int32");
-            let tensor = tf::scalar(&value.into(), dtype);
+            let tensor = tf::scalar(value, dtype);
             tensor.as_type("float32");
         }
 
@@ -539,9 +539,9 @@ mod tensor {
 
         #[wasm_bindgen_test]
         fn print() {
-            let value: u32 = Default::default();
+            let value = Default::default();
             let dtype = Default::default();
-            let tensor = tf::scalar(&value.into(), dtype);
+            let tensor = tf::scalar(value, dtype);
             tensor.print(Some(false));
         }
 
