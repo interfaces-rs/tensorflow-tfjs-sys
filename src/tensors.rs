@@ -118,6 +118,10 @@ extern {
     /// Casts the array to type int32
     #[wasm_bindgen(method, js_name = "toInt")]
     pub fn to_int(this: &Tensor) -> Tensor;
+
+    /// Returns a human-readable description of the tensor.
+    #[wasm_bindgen(method, js_name = "toString")]
+    pub fn to_string(this: &Tensor) -> JsString;
 }
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
