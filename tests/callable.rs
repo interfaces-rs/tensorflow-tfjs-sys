@@ -420,6 +420,23 @@ mod tensor {
             };
             this.reshape_as(&that);
         }
+
+        #[wasm_bindgen_test]
+        fn squeeze() {
+                let values = {
+                    let res = Array::new();
+                    res.push(&1.into());
+                    res.push(&2.into());
+                    res.push(&3.into());
+                    res.push(&4.into());
+                    res
+                };
+            let shape: Option<&[i32]> = Some(&[1, 1, 4]);
+            let dtype = Default::default();
+            let tensor = tf::tensor(&values, shape, dtype);
+            let axis = Default::default();
+            tensor.squeeze(axis);
+        }
     }
 }
 
