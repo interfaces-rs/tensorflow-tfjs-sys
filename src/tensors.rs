@@ -287,7 +287,7 @@ extern {
     /// Computes the difference between two lists of numbers.
     #[wasm_bindgen(js_name = "setdiff1dAsync")]
     #[must_use]
-    pub fn set_diff_1d_async(x: &JsValue, y: &JsValue) -> Promise;
+    pub fn set_diff_1d_async(x: &Tensor, y: &Tensor) -> Promise;
 
     /// This operation divides "spatial" dimensions [1, ..., M] of the input into a grid of blocks
     /// of shape blockShape, and interleaves these blocks with the "batch" dimension (0) such that
