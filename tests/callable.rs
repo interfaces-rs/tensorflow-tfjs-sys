@@ -353,6 +353,12 @@ mod tensor {
             let tensor = helper::tensor();
             tensor.data_sync();
         }
+
+        #[wasm_bindgen_test]
+        fn dispose() {
+            let tensor = helper::tensor();
+            tensor.dispose();
+        }
         #[wasm_bindgen_test]
         fn print() {
             let value: u32 = Default::default();
