@@ -168,17 +168,17 @@ extern {
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
-    /// Adds two tf.Tensors element-wise, A + B.
+    /// Adds two Tensors element-wise, A + B.
     pub fn add(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
-    /// Adds a list of tf.Tensors element-wise, each with the same shape and dtype.
+    /// Adds a list of Tensors element-wise, each with the same shape and dtype.
     #[wasm_bindgen(js_name = "addN")]
     pub fn add_n(tensors: &Array) -> Tensor;
 
-    /// Divides two tf.Tensors element-wise, A / B.
+    /// Divides two Tensors element-wise, A / B.
     pub fn div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
-    /// Divides two tf.Tensors element-wise, A / B. Supports broadcasting.
+    /// Divides two Tensors element-wise, A / B. Supports broadcasting.
     #[wasm_bindgen(js_name = "floorDiv")]
     pub fn floor_div(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
@@ -188,10 +188,10 @@ extern {
     /// Returns the min of a and b (a < b ? a : b) element-wise.
     pub fn minimum(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
-    /// Multiplies two tf.Tensors element-wise, A * B.
+    /// Multiplies two Tensors element-wise, A * B.
     pub fn mul(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
-    /// Computes the power of one tf.Tensor to another.
+    /// Computes the power of one Tensor to another.
     pub fn pow(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
     /// Returns the mod of a and b element-wise. floor(x / y) * y + mod(x, y) = x.
@@ -202,7 +202,7 @@ extern {
     #[wasm_bindgen(js_name = "squaredDifference")]
     pub fn squared_difference(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 
-    /// Subtracts two tf.Tensors element-wise, A - B.
+    /// Subtracts two Tensors element-wise, A - B.
     pub fn sub(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 }
 
