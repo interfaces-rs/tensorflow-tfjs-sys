@@ -350,6 +350,35 @@ extern {
     pub fn tan_h(x: &Tensor) -> Tensor;
 }
 
+// *****************
+// Matrix Operations
+// *****************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Computes the dot product of two matrices and/or vectors, t1 and t2.
+    pub fn dot(t1: &Tensor, t2: &Tensor) -> Tensor;
+
+    /// Computes the dot product of two matrices, A * B. These must be matrices.
+    pub fn mat_mul(
+        a: &Tensor,
+        b: &Tensor,
+        transposeA: Option<bool>,
+        transposeB: Option<bool>,
+        bias: &Tensor,
+        activation: &Activation,
+    ) -> Tensor;
+
+    /// Computes the norm of scalar, vectors, and matrices.
+    pub fn norm(x: &Tensor, ord: &JsValue, axis: Option<&[i32]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the outer product of two vectors, v1 and v2.
+    pub fn outer_product(v1: &Tensor, v2: &Tensor) -> Tensor;
+
+    /// Transposes the Tensor. Permutes the dimensions according to perm.
+    pub fn transpose(x: &Tensor, perm: Option<&[usize]>) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
