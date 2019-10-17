@@ -541,6 +541,53 @@ extern {
     pub fn sum(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
 }
 
+// ************************
+// Normalization Operations
+// ************************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Batch normalization.
+    #[wasm_bindgen(js_name = "batchNorm")]
+    pub fn batch_norm(
+        x: &Tensor,
+        mean: &Tensor,
+        variance: &Tensor,
+        offset: Option<&Tensor>,
+        scale: Option<&Tensor>,
+        variance_epsilon: Option<f32>,
+    ) -> Tensor;
+
+    /// Normalizes the activation of a local neighborhood across or within channels.
+    #[wasm_bindgen(js_name = "localResponseNormalization")]
+    pub fn local_response_normalization(
+        x: &Tensor,
+        depth_radius: Option<usize>,
+        bias: Option<i32>,
+        alpha: Option<i32>,
+        beta: Option<i32>,
+    ) -> Tensor;
+
+    /// Computes the log softmax.
+    #[wasm_bindgen(js_name = "logSoftmax")]
+    pub fn log_softmax(logits: &Tensor, axis: Option<i32>) -> Tensor;
+
+    /// Calculates the mean and variance of x.
+    pub fn moments(x: &Tensor, axis: Option<&[i32]>, keep_dims: Option<bool>) -> MomentsResult;
+
+    /// Computes the softmax normalized vector given the logits.
+    pub fn softmax(logits: &Tensor, dim: Option<i32>) -> Tensor;
+
+    /// Converts a sparse representation into a dense tensor.
+    #[wasm_bindgen(js_name = "sparseToDense")]
+    pub fn sparse_to_dense(
+        sparse_indices: &Tensor,
+        sparse_values: &Tensor,
+        output_shape: &[i32],
+        default_value: Option<&Tensor>,
+    ) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
