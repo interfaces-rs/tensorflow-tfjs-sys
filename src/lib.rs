@@ -28,6 +28,11 @@ pub type OpMapper = js_sys::Object;
 
 #[wasm_bindgen]
 extern {
+    pub type Activation;
+}
+
+#[wasm_bindgen]
+extern {
     pub type DatasetContainer;
 }
 
