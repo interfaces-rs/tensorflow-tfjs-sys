@@ -635,6 +635,16 @@ extern {
     pub fn where_async(condition: &Tensor) -> Promise;
 }
 
+// ***************
+// Scan Operations
+// ***************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Computes the cumulative sum of a Tensor along axis.
+    pub fn cumsum(x: &Tensor, axis: Option<i32>, exclusive: Option<bool>, reverse: Option<bool>) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
