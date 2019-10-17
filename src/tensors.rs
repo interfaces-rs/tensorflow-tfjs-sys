@@ -210,6 +210,133 @@ extern {
 // Basic Math Operations
 // *********************
 
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Computes absolute value element-wise: abs(x)
+    pub fn abs(x: &Tensor) -> Tensor;
+
+    /// Computes acos of the input Tensor element-wise: acos(x)
+    pub fn acos(x: &Tensor) -> Tensor;
+
+    /// Computes the inverse hyperbolic cos of the input Tensor element-wise: acosh(x)
+    pub fn acos_h(x: &Tensor) -> Tensor;
+
+    /// Computes asin of the input Tensor element-wise: asin(x)
+    pub fn asin(x: &Tensor) -> Tensor;
+
+    /// Computes inverse hyperbolic sin of the input Tensor element-wise: asinh(x)
+    pub fn asin_h(x: &Tensor) -> Tensor;
+
+    /// Computes atan of the input Tensor element-wise: atan(x)
+    pub fn atan(x: &Tensor) -> Tensor;
+
+    /// Computes arctangent of Tensors a / b element-wise: atan2(a, b).
+    pub fn atan2(x: &Tensor) -> Tensor;
+
+    /// Computes inverse hyperbolic tan of the input Tensor element-wise: atanh(x)
+    pub fn atan_h(x: &Tensor) -> Tensor;
+
+    /// Computes ceiling of input Tensor element-wise: ceil(x)
+    pub fn ceil(x: &Tensor) -> Tensor;
+
+    /// Clips values element-wise. max(min(x, clipValueMax), clipValueMin)
+    pub fn clip_by_value(x: &Tensor, clip_min: i32, clip_max: i32) -> Tensor;
+
+    /// Computes cos of the input Tensor element-wise: cos(x)
+    pub fn cos(x: &Tensor) -> Tensor;
+
+    /// Computes hyperbolic cos of the input Tensor element-wise: cosh(x)
+    pub fn cos_h(x: &Tensor) -> Tensor;
+
+    /// Computes exponential linear element-wise: x > 0 ? e ^ x - 1 : 0.
+    pub fn elu(x: &Tensor) -> Tensor;
+
+    /// Computes gause error function of the input Tensor element-wise: erf(x)
+    pub fn erf(x: &Tensor) -> Tensor;
+
+    /// Computes exponential of the input Tensor element-wise. e ^ x
+    pub fn exp(x: &Tensor) -> Tensor;
+
+    /// Computes exponential of the input Tensor minus one element-wise. e ^ x - 1
+    pub fn exp_m1(x: &Tensor) -> Tensor;
+
+    /// Computes floor of input Tensor element-wise: floor(x).
+    pub fn floor(x: &Tensor) -> Tensor;
+
+    /// Returns which elements of x are finite.
+    pub fn is_finite(x: &Tensor) -> Tensor;
+
+    /// Returns which elements of x are Infinity or -Infinity.
+    pub fn is_inf(x: &Tensor) -> Tensor;
+
+    /// Returns which elements of x are NaN.
+    pub fn is_nan(x: &Tensor) -> Tensor;
+
+    /// Computes leaky rectified linear element-wise.
+    pub fn leaky_relu(x: &Tensor, alpha: i32) -> Tensor;
+
+    /// Computes natural logarithm of the input Tensor element-wise: ln(x)
+    pub fn log(x: &Tensor) -> Tensor;
+
+    /// Computes natural logarithm of the input Tensor plus one element-wise: ln(1 + x)
+    pub fn log_1p(x: &Tensor) -> Tensor;
+
+    /// Computes log sigmoid of the input Tensor element-wise: logSigmoid(x). For numerical
+    /// stability, we use -softplus(-x).
+    pub fn log_sigmoid(x: &Tensor) -> Tensor;
+
+    /// Computes -1 * x element-wise.
+    pub fn neg(x: &Tensor) -> Tensor;
+
+    /// Computes leaky rectified linear element-wise with parametric alphas.
+    pub fn prelu(x: &Tensor, alpha: &Tensor) -> Tensor;
+
+    /// Computes reciprocal of x element-wise: 1 / x
+    pub fn reciprocal(x: &Tensor) -> Tensor;
+
+    /// Computes rectified linear element-wise: max(x, 0).
+    pub fn relu(x: &Tensor) -> Tensor;
+
+    /// Computes round of input Tensor element-wise: round(x).
+    pub fn round(x: &Tensor) -> Tensor;
+
+    /// Computes reciprocal of square root of the input Tensor element-wise: y = 1 / sqrt(x)
+    pub fn rsqrt(x: &Tensor) -> Tensor;
+
+    /// Computes scaled exponential linear element-wise.
+    pub fn selu(x: &Tensor) -> Tensor;
+
+    /// Computes sigmoid element-wise, 1 / (1 + exp(-x))
+    pub fn sigmoid(x: &Tensor) -> Tensor;
+
+    /// Returns an element-wise indication of the sign of a number.
+    pub fn sign(x: &Tensor) -> Tensor;
+
+    /// Computes sin of the input Tensor element-wise: sin(x)
+    pub fn sin(x: &Tensor) -> Tensor;
+
+    /// Computes hyperbolic sin of the input Tensor element-wise: sinh(x)
+    pub fn sin_h(x: &Tensor) -> Tensor;
+
+    /// Computes softplus of the input Tensor element-wise: log(exp(x) + 1)
+    pub fn soft_plus(x: &Tensor) -> Tensor;
+
+    /// Computes square root of the input Tensor element-wise: y = sqrt(x)
+    pub fn sqrt(x: &Tensor) -> Tensor;
+
+    /// Computes square of x element-wise: x ^ 2
+    pub fn square(x: &Tensor) -> Tensor;
+
+    /// Computes step of the input Tensor element-wise: x > 0 ? 1 : alpha * x
+    pub fn step(x: &Tensor, alpha: Option<i32>) -> Tensor;
+
+    /// Computes tan of the input Tensor element-wise, tan(x)
+    pub fn tan(x: &Tensor) -> Tensor;
+
+    /// Computes hyperbolic tangent of the input Tensor element-wise: tanh(x)
+    pub fn tan_h(x: &Tensor) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
