@@ -33,6 +33,18 @@ extern {
 
 #[wasm_bindgen]
 extern {
+    pub type Callbacks;
+
+    /// Factory function for a Callback that stops training when a monitored quantity has stopped
+    /// improving.
+    #[wasm_bindgen(js_name = "earlyStopping")]
+    pub fn early_stopping(this: &Callbacks, args: Option<&Object>) -> EarlyStopping;
+
+    pub static callbacks: Callbacks;
+}
+
+#[wasm_bindgen]
+extern {
     pub type DatasetContainer;
 }
 
@@ -47,6 +59,11 @@ extern {
     /// Reference count after the dispose call.
     #[wasm_bindgen(method, getter, js_name = "refCountAfterDispose")]
     pub fn ref_count_after_dispose(this: &DisposeResult) -> usize;
+}
+
+#[wasm_bindgen]
+extern {
+    pub type EarlyStopping;
 }
 
 #[wasm_bindgen]
