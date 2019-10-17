@@ -162,9 +162,9 @@ extern {
     pub fn assign(this: &Variable, value: &Tensor);
 }
 
-/*************************/
-/* Arithmetic Operations */
-/*************************/
+// *********************
+// Arithmetic Operations
+// *********************
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
@@ -206,9 +206,13 @@ extern {
     pub fn sub(lhs: &Tensor, rhs: &Tensor) -> Tensor;
 }
 
-/**********************/
-/* Creation Functions */
-/**********************/
+// *********************
+// Basic Math Operations
+// *********************
+
+// ******************
+// Creation Functions
+// ******************
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
@@ -308,9 +312,9 @@ extern {
     pub fn zeros_like(input: &Tensor) -> Tensor;
 }
 
-/****************************/
-/* Transformation Functions */
-/****************************/
+// ************************
+// Transformation Functions
+// ************************
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
@@ -384,9 +388,9 @@ extern {
     pub fn unstack(x: &Tensor, axis: Option<usize>) -> Array;
 }
 
-/********************/
-/* Random Functions */
-/********************/
+// ****************
+// Random Functions
+// ****************
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
