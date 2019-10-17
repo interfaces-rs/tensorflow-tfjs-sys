@@ -34,6 +34,12 @@ mod tensor {
             tf::add_n(&tensors);
         }
 
+        #[wasm_bindgen_test]
+        fn abs() {
+            let tensor = helper::tensor();
+            tensor.abs();
+        }
+
         // FIXME
         // #[wasm_bindgen_test]
         // fn batch_space_to_nd() {
