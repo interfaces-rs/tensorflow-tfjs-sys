@@ -219,6 +219,7 @@ extern {
     pub fn acos(x: &Tensor) -> Tensor;
 
     /// Computes the inverse hyperbolic cos of the input Tensor element-wise: acosh(x)
+    #[wasm_bindgen(js_name = "acos_h")]
     pub fn acos_h(x: &Tensor) -> Tensor;
 
     /// Computes asin of the input Tensor element-wise: asin(x)
@@ -234,6 +235,7 @@ extern {
     pub fn atan2(x: &Tensor) -> Tensor;
 
     /// Computes inverse hyperbolic tan of the input Tensor element-wise: atanh(x)
+    #[wasm_bindgen(js_name = "atanh")]
     pub fn atan_h(x: &Tensor) -> Tensor;
 
     /// Computes ceiling of input Tensor element-wise: ceil(x)
@@ -246,6 +248,7 @@ extern {
     pub fn cos(x: &Tensor) -> Tensor;
 
     /// Computes hyperbolic cos of the input Tensor element-wise: cosh(x)
+    #[wasm_bindgen(js_name = "cosh")]
     pub fn cos_h(x: &Tensor) -> Tensor;
 
     /// Computes exponential linear element-wise: x > 0 ? e ^ x - 1 : 0.
@@ -258,31 +261,38 @@ extern {
     pub fn exp(x: &Tensor) -> Tensor;
 
     /// Computes exponential of the input Tensor minus one element-wise. e ^ x - 1
+    #[wasm_bindgen(js_name = "expm1")]
     pub fn exp_m1(x: &Tensor) -> Tensor;
 
     /// Computes floor of input Tensor element-wise: floor(x).
     pub fn floor(x: &Tensor) -> Tensor;
 
     /// Returns which elements of x are finite.
+    #[wasm_bindgen(js_name = "isFinite")]
     pub fn is_finite(x: &Tensor) -> Tensor;
 
     /// Returns which elements of x are Infinity or -Infinity.
+    #[wasm_bindgen(js_name = "isInf")]
     pub fn is_inf(x: &Tensor) -> Tensor;
 
     /// Returns which elements of x are NaN.
+    #[wasm_bindgen(js_name = "isNaN")]
     pub fn is_nan(x: &Tensor) -> Tensor;
 
     /// Computes leaky rectified linear element-wise.
+    #[wasm_bindgen(js_name = "leakyRelu")]
     pub fn leaky_relu(x: &Tensor, alpha: i32) -> Tensor;
 
     /// Computes natural logarithm of the input Tensor element-wise: ln(x)
     pub fn log(x: &Tensor) -> Tensor;
 
     /// Computes natural logarithm of the input Tensor plus one element-wise: ln(1 + x)
+    #[wasm_bindgen(js_name = "log1p")]
     pub fn log_1p(x: &Tensor) -> Tensor;
 
     /// Computes log sigmoid of the input Tensor element-wise: logSigmoid(x). For numerical
     /// stability, we use -softplus(-x).
+    #[wasm_bindgen(js_name = "logSigmoid")]
     pub fn log_sigmoid(x: &Tensor) -> Tensor;
 
     /// Computes -1 * x element-wise.
@@ -316,9 +326,11 @@ extern {
     pub fn sin(x: &Tensor) -> Tensor;
 
     /// Computes hyperbolic sin of the input Tensor element-wise: sinh(x)
+    #[wasm_bindgen(js_name = "sinh")]
     pub fn sin_h(x: &Tensor) -> Tensor;
 
     /// Computes softplus of the input Tensor element-wise: log(exp(x) + 1)
+    #[wasm_bindgen(js_name = "softplus")]
     pub fn soft_plus(x: &Tensor) -> Tensor;
 
     /// Computes square root of the input Tensor element-wise: y = sqrt(x)
@@ -334,6 +346,7 @@ extern {
     pub fn tan(x: &Tensor) -> Tensor;
 
     /// Computes hyperbolic tangent of the input Tensor element-wise: tanh(x)
+    #[wasm_bindgen(js_name = "tanH")]
     pub fn tan_h(x: &Tensor) -> Tensor;
 }
 
