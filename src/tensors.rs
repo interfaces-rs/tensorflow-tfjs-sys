@@ -652,6 +652,7 @@ extern {
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Computes the sum along segments of a Tensor.
+    #[wasm_bindgen(js_name = "unsortedSegmentSum")]
     pub fn unsorted_segment_sum(x: &Tensor, segment_ids: &Tensor, num_segments: usize) -> Tensor;
 }
 
