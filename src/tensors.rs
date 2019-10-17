@@ -1,4 +1,4 @@
-use crate::DType;
+use crate::{Activation, DType};
 use js_sys::{Array, Float32Array, JsString, Number, Promise};
 use wasm_bindgen::prelude::*;
 
