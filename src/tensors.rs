@@ -589,6 +589,53 @@ extern {
 }
 
 // ******************
+// Logical Operations
+// ******************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Returns the truth value of (a == b) element-wise.
+    pub fn equal(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of (a > b) element-wise.
+    pub fn greater(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of (a >= b) element-wise.
+    #[wasm_bindgen(js_name = "greaterEqual")]
+    pub fn greater_equal(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of (a < b) element-wise.
+    pub fn less(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of (a <= b) element-wise.
+    #[wasm_bindgen(js_name = "lessEqual")]
+    pub fn less_equal(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of a AND b element-wise.
+    #[wasm_bindgen(js_name = "logicalAnd")]
+    pub fn logical_and(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of a OR b element-wise.
+    #[wasm_bindgen(js_name = "logicalOr")]
+    pub fn logical_or(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of a XOR b element-wise.
+    #[wasm_bindgen(js_name = "logicalXor")]
+    pub fn logical_xor(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the truth value of (a != b) element-wise.
+    #[wasm_bindgen(js_name = "notEqual")]
+    pub fn not_equal(a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the elements, either a or b depending on the condition.
+    pub fn where_(condition: &Tensor, a: &Tensor, b: &Tensor) -> Tensor;
+
+    /// Returns the coordinates of true elements of condition.
+    #[wasm_bindgen(js_name = "whereAsync")]
+    pub fn where_async(condition: &Tensor) -> Promise;
+}
+
+// ******************
 // Creation Functions
 // ******************
 
