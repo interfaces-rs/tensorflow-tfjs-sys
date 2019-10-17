@@ -489,6 +489,46 @@ extern {
     ) -> Tensor;
 }
 
+// ********************
+// Reduction Operations
+// ********************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Computes the logical and of elements across dimensions of a Tensor.
+    pub fn all(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the logical or of elements across dimensions of a Tensor.
+    pub fn any(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Returns the indices of the maximum values along an axis.
+    #[wasm_bindgen(js_name = "argMax")]
+    pub fn arg_max(x: &Tensor, axis: Option<&[usize]>) -> Tensor;
+
+    /// Returns the indices of the minimum values along an axis.
+    #[wasm_bindgen(js_name = "argMin")]
+    pub fn arg_min(x: &Tensor, axis: Option<&[usize]>) -> Tensor;
+
+    /// Computes the log(sum(exp(elements across the reduction dimensions)).
+    #[wasm_bindgen(js_name = "logSumExp")]
+    pub fn log_sum_exp(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the maximum of elements across dimensions of a Tensor.
+    pub fn max(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the mean of elements across dimensions of a Tensor.
+    pub fn mean(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the minimum value from the input.
+    pub fn min(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the product of elements across dimensions of a Tensor.
+    pub fn prod(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+
+    /// Computes the sum of elements across dimensions of a Tensor.
+    pub fn sum(x: &Tensor, axis: Option<&[usize]>, keep_dims: Option<bool>) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
