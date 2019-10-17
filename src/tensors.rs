@@ -655,6 +655,23 @@ extern {
     pub fn unsorted_segment_sum(x: &Tensor, segment_ids: &Tensor, num_segments: usize) -> Tensor;
 }
 
+// *************************
+// Moving Average Operations
+// *************************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Compute the moving average of a variable.
+    #[wasm_bindgen(js_name = "movingAverage")]
+    pub fn moving_average(
+        v: &Tensor,
+        x: &Tensor,
+        decay: &Tensor,
+        step: Option<&Tensor>,
+        zero_debias: Option<bool>,
+    ) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
