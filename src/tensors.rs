@@ -379,6 +379,116 @@ extern {
     pub fn transpose(x: &Tensor, perm: Option<&[usize]>) -> Tensor;
 }
 
+// **********************
+// Convolution Operations
+// **********************
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
+    /// Computes the 2D average pooling of an image.
+    #[wasm_bindgen(js_name = "avgPool")]
+    pub fn avg_pool(
+        x: &Tensor,
+        filter_size: &[usize],
+        strides: &[usize],
+        pad: &JsValue,
+        dim_rounding_mode: &str,
+    ) -> Tensor;
+
+    /// Computes a 1D convolution over the input x.
+    #[wasm_bindgen(js_name = "conv1d")]
+    pub fn conv_1d(
+        x: &Tensor,
+        filter: &Tensor,
+        stride: usize,
+        pad: &JsValue,
+        data_format: Option<&str>,
+        dilation: Option<usize>,
+        dim_rounding_mode: Option<&str>,
+    ) -> Tensor;
+
+    /// Computes a 2D convolution over the input x.
+    #[wasm_bindgen(js_name = "conv2d")]
+    pub fn conv_2d(
+        x: &Tensor,
+        filter: &Tensor,
+        stride: usize,
+        pad: &JsValue,
+        data_format: Option<&str>,
+        dilation: Option<usize>,
+        dim_rounding_mode: Option<&str>,
+    ) -> Tensor;
+
+    /// Computes the transposed 2D convolution of an image, also known as a deconvolution.
+    #[wasm_bindgen(js_name = "conv2dTranspose")]
+    pub fn conv_2d_transpose(
+        x: &Tensor,
+        filter: &Tensor,
+        stride: usize,
+        pad: &JsValue,
+        data_format: Option<&str>,
+        dilation: Option<usize>,
+        dim_rounding_mode: Option<&str>,
+        bias: Option<&Tensor>,
+        activation: &Activation,
+    ) -> Tensor;
+
+    /// Computes a 3D convolution over the input x.
+    #[wasm_bindgen(js_name = "conv3d")]
+    pub fn conv_3d(
+        x: &Tensor,
+        filter: &Tensor,
+        stride: usize,
+        pad: &JsValue,
+        data_format: Option<&str>,
+        dilation: Option<usize>,
+    );
+
+    /// Depthwise 2D convolution.
+    #[wasm_bindgen(js_name = "depthwiseConv2d")]
+    pub fn depthwise_conv_2d(
+        x: &Tensor,
+        filter: &Tensor,
+        stride: usize,
+        pad: &JsValue,
+        data_format: Option<&str>,
+        dilation: Option<usize>,
+        dim_rounding_mode: Option<&str>,
+    ) -> Tensor;
+
+    /// Computes the 2D max pooling of an image.
+    #[wasm_bindgen(js_name = "maxPool")]
+    pub fn max_pool(
+        x: &Tensor,
+        filter_size: &[usize],
+        strides: &[usize],
+        pad: &JsValue,
+        dim_rounding_mode: &str,
+    ) -> Tensor;
+
+    /// Performs an N-D pooling operation.
+    pub fn pool(
+        input: &Tensor,
+        window_shape: &[usize],
+        pooling_type: &str,
+        pad: &JsValue,
+        dilations: Option<&[usize]>,
+        strides: Option<&[usize]>,
+    ) -> Tensor;
+
+    /// 2-D convolution with separable filters.
+    #[wasm_bindgen(js_name = "separableConv2d")]
+    pub fn separable_conv_2d(
+        x: &Tensor,
+        depthwise: &Tensor,
+        pointwise: &Tensor,
+        strides: &[usize],
+        pad: &JsValue,
+        dilation: Option<&[usize]>,
+        data_format: Option<&str>,
+    ) -> Tensor;
+}
+
 // ******************
 // Creation Functions
 // ******************
