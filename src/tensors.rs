@@ -4,6 +4,18 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
+    /// MomentsResult is a dictionary returned from `Tensor.moments`.
+    pub type MomentsResult;
+
+    #[wasm_bindgen(method, getter)]
+    pub fn mean(this: &MomentsResult) -> Tensor;
+
+    #[wasm_bindgen(method, getter)]
+    pub fn variance(this: &MomentsResult) -> Tensor;
+}
+
+#[wasm_bindgen(module = "@tensorflow/tfjs")]
+extern {
     /// SymbolicTensor is a placeholder for a Tensor without any concrete value.
     pub type SymbolicTensor;
 }
