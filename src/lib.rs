@@ -78,6 +78,46 @@ extern {
 
 #[wasm_bindgen]
 extern {
+    pub type Metrics;
+
+    /// Binary accuracy metric function.
+    pub fn binary_accuracy(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Binary crossentropy metric function.
+    pub fn binary_crossentropy(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Categorical accuracy metric function.
+    pub fn categorical_accuracy(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Categorical crossentropy between an output tensor and a target tensor.
+    pub fn categorical_crossentropy(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Loss or metric function: Cosine proximity.
+    pub fn cosine_proximity(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Loss or metric function: Mean absolute error.
+    pub fn mean_absolute_error(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Loss or metric function: Mean absolute percentage error.
+    pub fn mean_absolute_percentage_error(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Loss or metric function: Mean squared error.
+    pub fn mean_squared_error(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Computes the precision of the predictions with respect to the labels.
+    pub fn precision(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Computes the recall of the predictions with respect to the labels.
+    pub fn recall(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    /// Sparse categorical accuracy metric function.
+    pub fn sparse_categorical_accuracy(this: &Metrics, y_true: &Tensor, y_pred: &Tensor) -> Tensor;
+
+    pub static metrics: Metrics;
+}
+
+#[wasm_bindgen]
+extern {
     pub type Regularizer;
 }
 
