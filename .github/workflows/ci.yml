@@ -42,7 +42,7 @@ jobs:
           command: doc
           args: --all --all-features
       - run: cp .ci/assets/docs/index.html target/doc/index.html
-      - uses: interfaces-rs/actions-gh-pages@v2.5.0
+      - uses: interfaces-rs/actions-gh-pages@v2.5.1
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
