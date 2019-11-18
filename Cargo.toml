@@ -38,7 +38,7 @@ features = [
 
 [dependencies.wasm-bindgen]
 version = "^0.2.51"
-features = ["serde-serialize", "strict-macro", "nightly"]
+features = ["serde-serialize", "strict-macro"]
 
 [dev-dependencies]
 wasm-bindgen-test = { version = "=0.3.1" }
