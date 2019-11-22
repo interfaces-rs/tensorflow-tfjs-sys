@@ -5,7 +5,7 @@ mod helper {
     pub fn tensor() -> tf::Tensor {
         let value = Array::new();
         let dtype = Default::default();
-        tf::tensor1d(&value.into(), dtype)
+        tf::tensor1d(&value, dtype)
     }
 }
 
@@ -112,7 +112,7 @@ mod tensor {
         fn cast() {
             let value = Array::new();
             let dtype = "float32";
-            let tensor = tf::tensor1d(&value.into(), Some(dtype));
+            let tensor = tf::tensor1d(&value, Some(dtype));
             tf::cast(&tensor, dtype);
         }
 
@@ -298,7 +298,7 @@ mod tensor {
         fn ones_like() {
             let value = Array::new();
             let dtype = Default::default();
-            let tensor = tf::tensor1d(&value.into(), dtype);
+            let tensor = tf::tensor1d(&value, dtype);
             tf::ones_like(&tensor);
         }
 
@@ -573,7 +573,7 @@ mod tensor {
         fn variable() {
             let value = Array::new();
             let dtype = Default::default();
-            let tensor = tf::tensor1d(&value.into(), dtype);
+            let tensor = tf::tensor1d(&value, dtype);
             let trainable = Default::default();
             let name = Default::default();
             let dtype = Default::default();
@@ -611,7 +611,7 @@ mod tensor {
         fn as_1d() {
             let value = Array::new();
             let dtype = Default::default();
-            let tensor = tf::tensor1d(&value.into(), dtype);
+            let tensor = tf::tensor1d(&value, dtype);
             tensor.as_1d();
         }
 
