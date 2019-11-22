@@ -7,7 +7,7 @@ authors = ["Darin Morrison <freebroccolo@users.noreply.github.com>"]
 license = "(Apache-2.0 OR MIT)"
 readme = "README.md"
 categories = ["wasm"]
-repository = "https://github.com/interfaces-rs/tfjs-sys"
+repository = "https://github.com/interfaces-rs/tensorflow-tfjs-sys"
 description = """
 Raw bindings to the tfjs-core API for projects using wasm-bindgen.
 """
