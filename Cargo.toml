@@ -8,7 +8,7 @@ readme = "README.md"
 categories = ["wasm"]
 repository = "https://github.com/interfaces-rs/tfjs-sys"
 description = """
-Raw bindings to the tfjs API for projects using wasm-bindgen.
+Raw bindings to the @tensorflow/tfjs API for projects using wasm-bindgen.
 """
 edition = "2018"
 
