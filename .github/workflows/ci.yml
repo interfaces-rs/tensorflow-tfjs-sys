@@ -86,14 +86,6 @@ jobs:
           command: doc
           args: --all --all-features
       - run: cp .ci/assets/docs/index.html target/doc/index.html
-      - env:
-          PERSONAL_TOKEN: ${{ secrets.ACTIONS_GH_PAGES_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./target/doc
-          SCRIPT_MODE: true
-        run: |
-          wget https://raw.githubusercontent.com/interfaces-rs/actions-gh-pages/v2.5.1/entrypoint.sh
-          bash ./entrypoint.sh
 
   # verify that code is formatted
   linux-cargo-fmt:
