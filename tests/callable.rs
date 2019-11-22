@@ -9,28 +9,29 @@ mod helper {
     }
 }
 
-mod browser {
-    use tensorflow_tfjs_sys as tf;
-    use wasm_bindgen_futures::JsFuture;
-    use wasm_bindgen_test::*;
+// FIXME: move these to separate module since they need to be tested in the browser
+// mod browser {
+//     use tensorflow_tfjs_sys as tf;
+//     use wasm_bindgen_futures::JsFuture;
+//     use wasm_bindgen_test::*;
 
-    #[wasm_bindgen_test]
-    fn from_pixels() {
-        let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
-        let num_channels = Default::default();
-        tf::browser::from_pixels(&image, num_channels);
-    }
+//     #[wasm_bindgen_test]
+//     fn from_pixels() {
+//         let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
+//         let num_channels = Default::default();
+//         tf::browser::from_pixels(&image, num_channels);
+//     }
 
-    #[wasm_bindgen_test]
-    async fn to_pixels() {
-        let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
-        let num_channels = Default::default();
-        let tensor = tf::browser::from_pixels(&image, num_channels);
-        let canvas = Default::default();
-        let promise = tf::browser::to_pixels(&tensor, canvas);
-        JsFuture::from(promise).await.unwrap();
-    }
-}
+//     #[wasm_bindgen_test]
+//     async fn to_pixels() {
+//         let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
+//         let num_channels = Default::default();
+//         let tensor = tf::browser::from_pixels(&image, num_channels);
+//         let canvas = Default::default();
+//         let promise = tf::browser::to_pixels(&tensor, canvas);
+//         JsFuture::from(promise).await.unwrap();
+//     }
+// }
 
 mod tensor {
     mod functions {
