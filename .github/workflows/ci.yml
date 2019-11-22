@@ -151,6 +151,10 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '13.x'
+      - run: npm ci
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
