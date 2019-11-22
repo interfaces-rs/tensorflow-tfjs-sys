@@ -1,31 +1,49 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  # skip all jobs if commit messages contain "[skip ci]" or "[ci skip]"
-  skip-ci:
+  # skip ci if the last commit contains the appropriate tag
+  skip-commit:
     runs-on: ubuntu-latest
     steps:
-      - if: |
-          contains(join(github.event.commits.*.message), '[skip ci]') ||
-          contains(join(github.event.commits.*.message), '[ci skip]')
-        run: exit 1 # FIXME: previously we could use exit code 78 for "neutral"
+      - if: "contains(github.event.head_commit.message, '[skip-ci]')
+          || contains(github.event.head_commit.message, '[skip ci]')
+          || contains(github.event.head_commit.message, '[ci-skip]')
+          || contains(github.event.head_commit.message, '[ci skip]')"
+        run: exit 78
 
   # verify that project builds (via "check" via "clippy") on linux
   linux-cargo-clippy:
-    needs: [skip-ci]
+    env:
+      RUSTC_WRAPPER: sccache
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - id: component
-        uses: actions-rs/components-nightly@v1
+      - uses: actions-rs/cargo@v1
         with:
-          target: x86_64-unknown-linux-gnu
-          component: clippy
+          command: update
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/sccache
+          key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{ steps.component.outputs.toolchain }}
-          override: true
-      - run: rustup component add clippy
+          profile: minimal
+          toolchain: stable
+          components: clippy
+      - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
@@ -33,37 +51,64 @@ jobs:
 
   # build the documentation
   linux-cargo-docs:
-    needs: [skip-ci]
+    env:
+      RUSTC_WRAPPER: sccache
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions-rs/cargo@v1
         with:
+          command: update
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/sccache
+          key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+      - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - uses: actions-rs/cargo@v1
+        with:
           command: doc
           args: --all --all-features
       - run: cp .ci/assets/docs/index.html target/doc/index.html
-      - uses: interfaces-rs/actions-gh-pages@v2.5.1
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      - env:
+          PERSONAL_TOKEN: ${{ secrets.ACTIONS_GH_PAGES_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./target/doc
+          SCRIPT_MODE: true
+        run: |
+          wget https://raw.githubusercontent.com/interfaces-rs/actions-gh-pages/v2.5.1/entrypoint.sh
+          bash ./entrypoint.sh
 
   # verify that code is formatted
   linux-cargo-fmt:
-    needs: [skip-ci]
+    env:
+      RUSTC_WRAPPER: sccache
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - id: component
-        uses: actions-rs/components-nightly@v1
-        with:
-          target: x86_64-unknown-linux-gnu
-          component: rustfmt
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{ steps.component.outputs.toolchain }}
+          profile: minimal
+          toolchain: nightly
+          components: rustfmt
           override: true
-      - run: rustup component add rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
@@ -71,30 +116,44 @@ jobs:
 
   # verify that tests pass on linux
   linux-cargo-test:
-    needs: [skip-ci]
+    env:
+      RUSTC_WRAPPER: sccache
+    needs: [skip-commit]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions-rs/cargo@v1
         with:
-          command: test
-          args: --all --all-features
-      - uses: actions-rs/cargo@v1
+          command: update
+      - uses: actions/cache@v1
         with:
-          command: install
-          args: cargo-tarpaulin
-      - run: |
-          cargo tarpaulin --out Xml
-          bash <(curl -s https://codecov.io/bash)
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  # verify that project builds and tests pass on windows
-  # windows-cargo-test:
-  #   needs: [skip-ci]
-  #   runs-on: windows-latest
-  #   steps:
-  #     - uses: actions/checkout@v1
-  #     - uses: actions-rs/cargo@v1
-  #       with:
-  #         command: test
-  #         args: --all --all-features
+          path: ~/.cache/sccache
+          key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        with:
+          path: target
+          key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - run: curl -L      https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - run: curl -L https://github.com/rustwasm/wasm-pack/releases/download/v0.8.1/wasm-pack-v0.8.1-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          components: clippy
+      - run: wasm-pack test --node -- --all
