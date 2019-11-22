@@ -10,7 +10,6 @@ mod models;
 mod performance;
 mod tensors;
 mod training;
-mod util;
 
 pub use layers::*;
 pub use models::*;
