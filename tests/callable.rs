@@ -1,6 +1,6 @@
 mod helper {
     use js_sys::Array;
-    use tfjs_sys as tf;
+    use tensorflow_tfjs_sys as tf;
 
     pub fn tensor() -> tf::Tensor {
         let value = Array::new();
@@ -13,7 +13,7 @@ mod tensor {
     mod functions {
         use super::super::helper;
         use js_sys::Array;
-        use tfjs_sys as tf;
+        use tensorflow_tfjs_sys as tf;
         use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
 
@@ -573,7 +573,7 @@ mod tensor {
     mod methods {
         use super::super::helper;
         use js_sys::Array;
-        use tfjs_sys as tf;
+        use tensorflow_tfjs_sys as tf;
         use wasm_bindgen_futures::JsFuture;
         use wasm_bindgen_test::*;
 
@@ -772,7 +772,7 @@ mod tensor {
 }
 
 mod tensor_buffer {
-    use tfjs_sys as tf;
+    use tensorflow_tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
@@ -814,7 +814,7 @@ mod tensor_buffer {
 
 mod variable {
     use js_sys::Array;
-    use tfjs_sys as tf;
+    use tensorflow_tfjs_sys as tf;
     use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
