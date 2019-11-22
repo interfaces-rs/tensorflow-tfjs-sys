@@ -27,21 +27,21 @@ wasm-bindgen-futures = "^0.4.1"
 wasm-bindgen-webidl = "^0.2.51"
 
 [dependencies.js-sys]
-version = "^0.3.28"
+version = "^0.3.32"
 features = []
 
 [dependencies.web-sys]
-version = "^0.3.28"
+version = "^0.3.32"
 features = [
   "HtmlCanvasElement"
 ]
 
 [dependencies.wasm-bindgen]
-version = "^0.2.51"
+version = "^0.2.55"
 features = ["serde-serialize", "strict-macro"]
 
 [dev-dependencies]
-wasm-bindgen-test = { version = "=0.3.1" }
+wasm-bindgen-test = { version = "=0.3.5" }
 
 [workspace]
 members = [
