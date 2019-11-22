@@ -12,9 +12,6 @@ description = """
 Raw bindings to the @tensorflow/tfjs API for projects using wasm-bindgen.
 """
 
-[package.metadata.docs.rs]
-all-features = true
-
 [lib]
 crate-type = ["cdylib", "rlib"]
 
