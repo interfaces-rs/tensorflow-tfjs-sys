@@ -10,7 +10,7 @@ categories = ["wasm"]
 repository = "https://github.com/interfaces-rs/tensorflow-tfjs-sys"
 
 [lib]
-crate-type = ["rlib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 serde = "^1.0.101"

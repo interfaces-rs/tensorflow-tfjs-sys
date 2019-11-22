@@ -13,7 +13,7 @@ Raw bindings to the tfjs-node API for projects using wasm-bindgen.
 """
 
 [lib]
-crate-type = ["rlib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 serde = "^1.0.101"
