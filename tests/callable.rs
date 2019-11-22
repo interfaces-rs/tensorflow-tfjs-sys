@@ -20,6 +20,16 @@ mod browser {
         let num_channels = Default::default();
         tf::browser::from_pixels(&image, num_channels);
     }
+
+    #[wasm_bindgen_test]
+    async fn to_pixels() {
+        let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
+        let num_channels = Default::default();
+        let tensor = tf::browser::from_pixels(&image, num_channels);
+        let canvas = Default::default();
+        let promise = tf::browser::to_pixels(&tensor, canvas);
+        JsFuture::from(promise).await.unwrap();
+    }
 }
 
 mod tensor {
