@@ -1,6 +1,6 @@
 [package]
-name = "tfjs-sys"
-version = "0.0.1"
+name = "tensorflow-tfjs-sys"
+version = "0.0.0"
 authors = ["Darin Morrison <freebroccolo@users.noreply.github.com>"]
 license = "Apache-2.0 OR MIT"
 readme = "README.md"
