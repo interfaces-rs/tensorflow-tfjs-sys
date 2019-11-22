@@ -31,7 +31,10 @@ features = []
 [dependencies.web-sys]
 version = "^0.3.32"
 features = [
-  "HtmlCanvasElement"
+  "HtmlCanvasElement",
+  "HtmlImageElement",
+  "HtmlVideoElement",
+  "ImageData",
 ]
 
 [dependencies.wasm-bindgen]

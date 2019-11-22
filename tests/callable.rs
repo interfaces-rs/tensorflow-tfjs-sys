@@ -9,6 +9,19 @@ mod helper {
     }
 }
 
+mod browser {
+    use tensorflow_tfjs_sys as tf;
+    use wasm_bindgen_futures::JsFuture;
+    use wasm_bindgen_test::*;
+
+    #[wasm_bindgen_test]
+    fn from_pixels() {
+        let image = web_sys::ImageData::new_with_sw(0, 0).unwrap();
+        let num_channels = Default::default();
+        tf::browser::from_pixels(&image, num_channels);
+    }
+}
+
 mod tensor {
     mod functions {
         use super::super::helper;
