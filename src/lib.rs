@@ -18,7 +18,7 @@ pub use performance::*;
 pub use tensors::*;
 pub use training::*;
 
-use js_sys::JsString;
+use js_sys::{JsString, Object};
 use wasm_bindgen::prelude::*;
 
 pub type DType = &'static str;
