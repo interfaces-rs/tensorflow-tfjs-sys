@@ -5,11 +5,11 @@
       API for projects using <a href="https://github.com/rustwasm/wasm-bindgen"><code>wasm-bindgen</code></a></strong>
   </p>
   <p style="margin-bottom: 0.5ex;">
-    <a href="https://interfaces-rs.github.io/tfjs-sys"><img
+    <a href="https://interfaces-rs.github.io/tensorflow-tfjs-sys"><img
         src="https://img.shields.io/badge/docs-latest-blueviolet?logo=Read-the-docs&logoColor=white"
         /></a>
-    <a href="https://github.com/interfaces-rs/tfjs-sys/actions"><img
-        src="https://github.com/interfaces-rs/tfjs-sys/workflows/ci/badge.svg"
+    <a href="https://github.com/interfaces-rs/tensorflow-tfjs-sys/actions"><img
+        src="https://github.com/interfaces-rs/tensorflow-tfjs-sys/workflows/ci/badge.svg"
         /></a>
     <a href="https://crates.io/crates/tfjs-sys"><img
         src="https://img.shields.io/librariesio/release/cargo/tfjs-sys.svg?logo=rust"
