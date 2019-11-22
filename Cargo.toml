@@ -43,15 +43,15 @@ wasm-bindgen-test = { version = "=0.3.5" }
 
 [workspace]
 members = [
-  "crates/tfjs-converter-sys",
-  "crates/tfjs-core-sys",
-  "crates/tfjs-layers-sys",
-  "crates/tfjs-node-sys",
+  "crates/tensorflow-tfjs-converter-sys",
+  "crates/tensorflow-tfjs-core-sys",
+  "crates/tensorflow-tfjs-layers-sys",
+  "crates/tensorflow-tfjs-node-sys",
 ]
 
 [patch.crates-io]
-tfjs-converter-sys = { path = 'crates/tfjs-converter-sys' }
-tfjs-core-sys = { path = 'crates/tfjs-core-sys' }
-tfjs-layers-sys = { path = 'crates/tfjs-layers-sys' }
-tfjs-node-sys = { path = 'crates/tfjs-node-sys' }
-tfjs-sys = { path = '.' }
+tensorflow-tfjs-converter-sys = { path = 'crates/tensorflow-tfjs-converter-sys' }
+tensorflow-tfjs-core-sys = { path = 'crates/tensorflow-tfjs-core-sys' }
+tensorflow-tfjs-layers-sys = { path = 'crates/tensorflow-tfjs-layers-sys' }
+tensorflow-tfjs-node-sys = { path = 'crates/tensorflow-tfjs-node-sys' }
+tensorflow-tfjs-sys = { path = '.' }
