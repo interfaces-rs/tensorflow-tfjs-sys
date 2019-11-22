@@ -15,26 +15,20 @@ Raw bindings to the @tensorflow/tfjs-core API for projects using wasm-bindgen.
 [lib]
 crate-type = ["cdylib", "rlib"]
 
-[build-dependencies]
-env_logger = "^0.7.0"
-failure = "^0.1.5"
-sourcefile = "^0.1.4"
-wasm-bindgen-webidl = "^0.2.51"
-
-[dependencies]
-serde = "^1.0.101"
-serde_derive = "^1.0.101"
-
 [dependencies.js-sys]
-version = "^0.3.28"
+version = "^0.3.32"
 features = []
 
+[dependencies.serde]
+version = "^1.0.102"
+features = ["derive"]
+
 [dependencies.web-sys]
-version = "^0.3.28"
+version = "^0.3.32"
 features = []
 
 [dependencies.wasm-bindgen]
-version = "^0.2.51"
+version = "^0.2.55"
 features = ["serde-serialize"]
 
 [features]
