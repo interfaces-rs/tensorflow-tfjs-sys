@@ -6,7 +6,7 @@ use web_sys::HtmlCanvasElement;
 #[wasm_bindgen(module = "@tensorflow/tfjs")]
 extern {
     /// Creates a Tensor from an image.
-    pub fn from_pixels(pixels: &JsValue, num_channels: usize) -> Tensor;
+    pub fn from_pixels(pixels: &JsValue, num_channels: Option<usize>) -> Tensor;
 
     /// Draws a Tensor of pixel values to a byte array or optionally a canvas.
     #[must_use]
