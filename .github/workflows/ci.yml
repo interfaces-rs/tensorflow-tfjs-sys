@@ -20,7 +20,17 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
+          rustup show > .rustup.lock
+          rm -rf ~/.rustup
+      - uses: actions/cache@v1
+        id: cache-rustup
+        with:
+          path: ~/.rustup
+          key: ${{ runner.OS }}-rustup-stable-clippy-${{ hashFiles('.rustup.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+      - if: steps.cache-rustup.outputs.cache-hit != 'true'
+        run: |
           rustup set profile minimal
           rustup toolchain install stable --component clippy
       - uses: actions-rs/cargo@v1
@@ -57,7 +67,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
+          rustup show > .rustup.lock
+          rm -rf ~/.rustup
+      - uses: actions/cache@v1
+        id: cache-rustup
+        with:
+          path: ~/.rustup
+          key: ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+      - if: steps.cache-rustup.outputs.cache-hit != 'true'
+        run: |
           rustup set profile minimal
           rustup toolchain install stable
       - uses: actions-rs/cargo@v1
@@ -94,12 +112,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-rs/toolchain@v1
+      - run: |
+          rustup show > .rustup.lock
+          rm -rf ~/.rustup
+      - uses: actions/cache@v1
+        id: cache-rustup
         with:
-          profile: minimal
-          toolchain: nightly
-          components: rustfmt
-          override: true
+          path: ~/.rustup
+          key: ${{ runner.OS }}-rustup-nightly-rustfmt-${{ hashFiles('.rustup.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-rustup-nightly-${{ hashFiles('.rustup.lock') }}
+      - if: steps.cache-rustup.outputs.cache-hit != 'true'
+        run: |
+          rustup set profile minimal
+          rustup toolchain install nightly --component rustfmt
+          rustup default nightly
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
@@ -114,7 +141,15 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
+          rustup show > .rustup.lock
+          rm -rf ~/.rustup
+      - uses: actions/cache@v1
+        id: cache-rustup
+        with:
+          path: ~/.rustup
+          key: ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+      - if: steps.cache-rustup.outputs.cache-hit != 'true'
+        run: |
           rustup set profile minimal
           rustup toolchain install stable
       - uses: actions-rs/cargo@v1
@@ -142,4 +177,6 @@ jobs:
         with:
           node-version: '13.x'
       - run: npm ci
-      - run: wasm-pack test --node -- --all
+      - run: |
+          wasm-pack build
+          wasm-pack test --node -- --all
