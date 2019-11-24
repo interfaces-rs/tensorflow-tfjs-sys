@@ -20,17 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup show > .rustup.lock
           rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
-      - uses: actions/cache@v1
-        with:
-          path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-${{ hashFiles('.rustup.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
-      - run: |
           rustup set profile minimal
           rustup toolchain install stable --component clippy
       - uses: actions-rs/cargo@v1
@@ -40,34 +30,18 @@ jobs:
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/git
           key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions-rs/cargo@v1
         with:
@@ -83,17 +57,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup show > .rustup.lock
           rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
-      - uses: actions/cache@v1
-        with:
-          path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-${{ hashFiles('.rustup.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
-      - run: |
           rustup set profile minimal
           rustup toolchain install stable
       - uses: actions-rs/cargo@v1
@@ -103,34 +67,18 @@ jobs:
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/git
           key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions-rs/cargo@v1
         with:
@@ -166,17 +114,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          rustup show > .rustup.lock
           rustup toolchain list | cut -d " " -f1 | xargs -I {} rustup uninstall {}
-      - uses: actions/cache@v1
-        with:
-          path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-${{ hashFiles('.rustup.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
-      - run: |
           rustup set profile minimal
           rustup toolchain install stable
       - uses: actions-rs/cargo@v1
@@ -186,26 +124,14 @@ jobs:
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/git
           key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-build-${{ env.cache-name }}-
-            ${{ runner.OS }}-build-
-            ${{ runner.OS }}-
       - uses: actions/cache@v1
         with:
           path: target
