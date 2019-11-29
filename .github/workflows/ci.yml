@@ -22,41 +22,51 @@ jobs:
       - run: |
           rustup show > .rustup.lock
           rm -rf ~/.rustup
+          rm -rf ~/.cargo/git
+          rm -rf ~/.cargo/registry
       - uses: actions/cache@v1
         id: cache-rustup
         with:
           path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-stable-clippy-${{ hashFiles('.rustup.lock') }}
+          key: ${{ runner.OS }}-rustup-[stable]-[clippy]-${{ hashFiles('.rustup.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+            ${{ runner.OS }}-rustup-[stable]-${{ hashFiles('.rustup.lock') }}
       - if: steps.cache-rustup.outputs.cache-hit != 'true'
         run: |
           rustup set profile minimal
           rustup toolchain install stable --component clippy
-      - uses: actions-rs/cargo@v1
-        with:
-          command: update
       - uses: actions/cache@v1
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        id: cache-cargo-bin
+        with:
+          path: ~/.cargo/bin
+          key: ${{ runner.OS }}-cargo-bin-[sccache]-[linux-cargo-clippy]-${{ hashFiles('**/Cargo.lock') }}
+      - if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
+        run: |
+          curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
-          path: ~/.cargo/git
-          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions/cache@v1
-        with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-      - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --all-targets --all-features -- -D warnings
+          args: --frozen --all-features --all-targets -- -D warnings
+      - if: failure()
+        run: |
+          cargo fetch
+          cargo clippy --frozen --all-features --all-targets -- -D warnings
 
   # build the documentation
   linux-cargo-docs:
@@ -69,40 +79,55 @@ jobs:
       - run: |
           rustup show > .rustup.lock
           rm -rf ~/.rustup
+          rm -rf ~/.cargo/git
+          rm -rf ~/.cargo/registry
       - uses: actions/cache@v1
         id: cache-rustup
         with:
           path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+          key: ${{ runner.OS }}-rustup-[stable]-${{ hashFiles('.rustup.lock') }}
       - if: steps.cache-rustup.outputs.cache-hit != 'true'
         run: |
           rustup set profile minimal
           rustup toolchain install stable
-      - uses: actions-rs/cargo@v1
-        with:
-          command: update
       - uses: actions/cache@v1
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        id: cache-cargo-bin
+        with:
+          path: ~/.cargo/bin
+          key: ${{ runner.OS }}-cargo-bin-[sccache]-[linux-cargo-clippy]-${{ hashFiles('**/Cargo.lock') }}
+      - if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
+        run: |
+          curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
-          path: ~/.cargo/git
-          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions/cache@v1
-        with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-      - run: curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions-rs/cargo@v1
         with:
           command: doc
-          args: --all --all-features
-      - run: cp .ci/assets/docs/index.html target/doc/index.html
+          args: --frozen --all-features --no-deps --package tensorflow-tfjs-sys
+      - if: failure()
+        run: |
+          cargo fetch
+          cargo doc --frozen --all-features --no-deps --package tensorflow-tfjs-sys
+      - env:
+          PERSONAL_TOKEN: ${{ secrets.ACTIONS_GH_PAGES_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./target/doc
+          SCRIPT_MODE: true
+        run: wget -qO - https://raw.githubusercontent.com/interfaces-rs/actions-gh-pages/v2.5.1/entrypoint.sh | bash -
 
   # verify that code is formatted
   linux-cargo-fmt:
@@ -119,7 +144,7 @@ jobs:
         id: cache-rustup
         with:
           path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-nightly-rustfmt-${{ hashFiles('.rustup.lock') }}
+          key: ${{ runner.OS }}-rustup-[nightly]-[rustfmt]-${{ hashFiles('.rustup.lock') }}
           restore-keys: |
             ${{ runner.OS }}-rustup-nightly-${{ hashFiles('.rustup.lock') }}
       - if: steps.cache-rustup.outputs.cache-hit != 'true'
@@ -131,6 +156,10 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
+      - if: failure()
+        run: |
+          cargo fetch
+          cargo fmt --all -- --check
 
   # verify that tests pass on linux
   linux-cargo-test:
@@ -143,40 +172,50 @@ jobs:
       - run: |
           rustup show > .rustup.lock
           rm -rf ~/.rustup
+          rm -rf ~/.cargo/git
+          rm -rf ~/.cargo/registry
       - uses: actions/cache@v1
         id: cache-rustup
         with:
           path: ~/.rustup
-          key: ${{ runner.OS }}-rustup-stable-${{ hashFiles('.rustup.lock') }}
+          key: ${{ runner.OS }}-rustup-[stable]-${{ hashFiles('.rustup.lock') }}
       - if: steps.cache-rustup.outputs.cache-hit != 'true'
         run: |
           rustup set profile minimal
           rustup toolchain install stable
-      - uses: actions-rs/cargo@v1
-        with:
-          command: update
       - uses: actions/cache@v1
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v1
+        id: cache-cargo-bin
+        with:
+          path: ~/.cargo/bin
+          key: ${{ runner.OS }}-cargo-bin-[sccache:wasm-pack]-[linux-cargo-clippy]-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-cargo-bin-[sccache]-[linux-cargo-clippy]-${{ hashFiles('**/Cargo.lock') }}
+      - if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
+        run: |
+          curl -L      https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+          curl -L https://github.com/rustwasm/wasm-pack/releases/download/v0.8.1/wasm-pack-v0.8.1-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.OS }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
           path: ~/.cargo/registry
           key: ${{ runner.OS }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions/cache@v1
         with:
-          path: ~/.cargo/git
-          key: ${{ runner.OS }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions/cache@v1
-        with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
-      - run: curl -L      https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
-      - run: curl -L https://github.com/rustwasm/wasm-pack/releases/download/v0.8.1/wasm-pack-v0.8.1-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - uses: actions/setup-node@v1
         with:
-          node-version: '13.x'
+          node-version: "13.x"
       - run: npm ci
-      - run: |
-          wasm-pack build
-          wasm-pack test --node -- --all
+      - run: wasm-pack test --node -- --frozen --all-features --all-targets
+      - if: failure()
+        run: |
+          cargo fetch
+          wasm-pack test --node -- --frozen --all-features --all-targets
