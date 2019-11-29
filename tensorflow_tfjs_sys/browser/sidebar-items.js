@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["from_pixels","Creates a Tensor from an image."],["to_pixels","Draws a Tensor of pixel values to a byte array or optionally a canvas."]]});

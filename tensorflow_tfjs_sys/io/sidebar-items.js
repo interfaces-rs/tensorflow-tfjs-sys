@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["copy_model","Copy a model from one URL to another."],["list_models","List all models stored in registered storage mediums."],["move_model","Move a model from one URL to another."],["remove_model","Remove a model specified by URL from a reigstered storage medium."]]});
