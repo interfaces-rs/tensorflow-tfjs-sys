@@ -69,24 +69,18 @@ jobs:
         with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo fetch
       - name: Run cargo clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
           args: --frozen --all-features --all-targets -- -D warnings
-      - name: Run cargo fetch and re-run cargo clippy
-        if: failure()
-        run: |
-          cargo fetch
-          cargo clippy --frozen --all-features --all-targets -- -D warnings
 
   # build the documentation
   linux-cargo-docs:
     name: Run cargo docs
     needs: [skip-commit]
     runs-on: ubuntu-latest
-    env:
-      RUSTC_WRAPPER: sccache
     steps:
       - uses: actions/checkout@v1
       - name: Prepare for restoring caches
@@ -111,16 +105,6 @@ jobs:
         with:
           path: ~/.cache/sccache
           key: ${{ runner.OS }}-sccache-${{ hashFiles('**/Cargo.lock') }}
-      - name: Restore ~/.cargo/bin
-        uses: actions/cache@v1
-        id: cache-cargo-bin
-        with:
-          path: ~/.cargo/bin
-          key: ${{ runner.OS }}-cargo-bin-[sccache]-[linux-cargo-clippy]-${{ hashFiles('**/Cargo.lock') }}
-      - name: Install sccache
-        if: steps.cache-cargo-bin.outputs.cache-hit != 'true'
-        run: |
-          curl -L https://github.com/mozilla/sccache/releases/download/0.2.12/sccache-0.2.12-x86_64-unknown-linux-musl.tar.gz | tar zxf - --overwrite --strip-components=1 -C ~/.cargo/bin
       - name: Restore ~/.cargo/git
         uses: actions/cache@v1
         with:
@@ -136,16 +120,12 @@ jobs:
         with:
           path: target
           key: ${{ runner.OS }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - run: cargo fetch
       - name: Run cargo doc
         uses: actions-rs/cargo@v1
         with:
           command: doc
           args: --frozen --all-features --no-deps --package tensorflow-tfjs-sys
-      - name: Run cargo fetch and re-run cargo fetch
-        if: failure()
-        run: |
-          cargo fetch
-          cargo doc --frozen --all-features --no-deps --package tensorflow-tfjs-sys
       - env:
           PERSONAL_TOKEN: ${{ secrets.ACTIONS_GH_PAGES_TOKEN }}
           PUBLISH_BRANCH: gh-pages
@@ -158,8 +138,6 @@ jobs:
     name: Run cargo fmt
     needs: [skip-commit]
     runs-on: ubuntu-latest
-    env:
-      RUSTC_WRAPPER: sccache
     steps:
       - uses: actions/checkout@v1
       - name: Prepare for restoring caches
@@ -180,16 +158,12 @@ jobs:
           rustup set profile minimal
           rustup toolchain install nightly --component rustfmt
           rustup default nightly
+      - run: cargo fetch
       - name: Run cargo fmt
         uses: actions-rs/cargo@v1
         with:
           command: fmt
           args: --all -- --check
-      - name: Run cargo fetch and re-run cargo fmt
-        if: failure()
-        run: |
-          cargo fetch
-          cargo fmt --all -- --check
 
   # verify that tests pass on linux
   linux-cargo-test:
@@ -255,9 +229,5 @@ jobs:
         with:
           node-version: "13.x"
       - run: npm ci
+      - run: cargo fetch
       - run: wasm-pack test --node -- --frozen --all-features --all-targets
-      - name: Run cargo fetch and re-run wasm-pack test
-        if: failure()
-        run: |
-          cargo fetch
-          wasm-pack test --node -- --frozen --all-features --all-targets
