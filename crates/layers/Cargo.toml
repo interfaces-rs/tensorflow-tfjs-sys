@@ -20,7 +20,7 @@ version = "^0.3.32"
 features = []
 
 [dependencies.serde]
-version = "^1.0.102"
+version = "^1.0.104"
 features = ["derive"]
 
 [dependencies.web-sys]

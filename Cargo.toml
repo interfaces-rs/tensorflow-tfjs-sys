@@ -18,7 +18,7 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 env_logger = "^0.7.0"
 failure = "^0.1.6"
-serde = "^1.0.101"
+serde = "^1.0.104"
 serde_derive = "^1.0.101"
 sourcefile = "^0.1.4"
 wasm-bindgen-futures = "^0.4.1"
