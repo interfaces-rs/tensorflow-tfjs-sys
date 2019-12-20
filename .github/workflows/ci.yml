@@ -17,7 +17,7 @@ jobs:
     needs: [skip-commit]
     runs-on: ubuntu-latest
     env:
-      RUST_TOOLCHAIN: 1.39.0
+      RUST_TOOLCHAIN: 1.40.0
       RUSTC_WRAPPER: tools/bin/sccache
     steps:
       - uses: actions/checkout@v1
@@ -91,7 +91,7 @@ jobs:
     needs: [skip-commit, linux-cache-tools]
     runs-on: ubuntu-latest
     env:
-      RUST_TOOLCHAIN: 1.39.0
+      RUST_TOOLCHAIN: 1.40.0
       RUSTC_WRAPPER: tools/bin/sccache
     steps:
       - uses: actions/checkout@v1
@@ -113,7 +113,7 @@ jobs:
     needs: [skip-commit, linux-cache-tools]
     runs-on: ubuntu-latest
     env:
-      RUST_TOOLCHAIN: 1.39.0
+      RUST_TOOLCHAIN: 1.40.0
       RUSTC_WRAPPER: tools/bin/sccache
     steps:
       - uses: actions/checkout@v1
@@ -159,7 +159,7 @@ jobs:
     needs: [skip-commit, linux-cache-tools]
     runs-on: ubuntu-latest
     env:
-      RUST_TOOLCHAIN: 1.39.0
+      RUST_TOOLCHAIN: 1.40.0
     steps:
       - uses: actions/checkout@v1
       - name: Restore /home/runner/.rustup
@@ -233,7 +233,7 @@ jobs:
     needs: [skip-commit, linux-cache-tools]
     runs-on: ubuntu-latest
     env:
-      RUST_TOOLCHAIN: 1.39.0
+      RUST_TOOLCHAIN: 1.40.0
       RUSTC_WRAPPER: tools/bin/sccache
     steps:
       - uses: actions/checkout@v1
